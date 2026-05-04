@@ -15,20 +15,20 @@ const reply = (q: string): string => {
   if (t.includes("fat") || t.includes("loss") || t.includes("weight"))
     return "For metabolic research, customers most commonly explore **Semaglutide** and **Tesamorelin**. Both ship with a third-party HPLC Certificate of Analysis (≥99% purity).";
   if (t.includes("test") || t.includes("lab") || t.includes("coa"))
-    return "Yes — every batch is independently tested by an ISO-accredited lab using HPLC and mass spectrometry. The COA is downloadable on every product page.";
+    return "Yes - every batch is independently tested by an ISO-accredited lab using HPLC and mass spectrometry. The COA is downloadable on every product page.";
   if (t.includes("ship") || t.includes("delivery"))
     return "Orders ship same-day from our Delaware facility via USPS Priority. Free shipping over $200, with full tracking included.";
   if (t.includes("recover") || t.includes("heal"))
     return "**BPC-157** and **TB-500** are the most-researched recovery peptides in our catalog. Many labs purchase them as a pair.";
   if (t.includes("safe") || t.includes("legal"))
     return "All Aevum Bio products are sold strictly for in-vitro laboratory research and are not for human consumption.";
-  return "Great question — I can help with product selection, lab testing, dosage research notes, or shipping. Try one of the suggestions below.";
+  return "Great question - I can help with product selection, lab testing, dosage research notes, or shipping. Try one of the suggestions below.";
 };
 
 export const Chatbot = () => {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { role: "bot", text: "Hi, I'm **Aevum AI** — your research assistant. How can I help today?" },
+    { role: "bot", text: "Hi, I'm **Aevum AI** - your research assistant. How can I help today?" },
   ]);
   const [input, setInput] = useState("");
   const scroller = useRef<HTMLDivElement>(null);

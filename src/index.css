@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 /*
-  Aevum Bio — Design System
+  Aevum Bio - Design System
   All colors HSL. 5 themes via [data-theme]. Default = clinical (the recommended winner).
 */
 
 @layer base {
   :root,
   [data-theme="clinical"] {
-    /* Clinical Blue — RECOMMENDED WINNER for US biotech trust + CRO */
+    /* Clinical Blue - RECOMMENDED WINNER for US biotech trust + CRO */
     --background: 210 40% 98.5%;
     --foreground: 215 45% 12%;
 
@@ -59,7 +59,7 @@
     --glass-border: hsla(215, 30%, 60%, 0.18);
   }
 
-  /* MIDNIGHT — Premium dark biotech */
+  /* MIDNIGHT - Premium dark biotech */
   [data-theme="midnight"] {
     --background: 222 40% 6%;
     --foreground: 210 30% 96%;
@@ -95,7 +95,7 @@
     --glass-border: hsla(174, 60%, 60%, 0.15);
   }
 
-  /* SAGE — Soft science wellness */
+  /* SAGE - Soft science wellness */
   [data-theme="sage"] {
     --background: 60 20% 97%;
     --foreground: 160 20% 12%;
@@ -131,7 +131,7 @@
     --glass-border: hsla(160, 20%, 50%, 0.15);
   }
 
-  /* ARCTIC — Crisp white + ice blue, ultra-clinical */
+  /* ARCTIC - Crisp white + ice blue, ultra-clinical */
   [data-theme="arctic"] {
     --background: 0 0% 100%;
     --foreground: 220 30% 10%;
@@ -167,7 +167,7 @@
     --glass-border: hsla(220, 30%, 60%, 0.18);
   }
 
-  /* OBSIDIAN — Luxury black + champagne gold */
+  /* OBSIDIAN - Luxury black + champagne gold */
   [data-theme="obsidian"] {
     --background: 30 8% 7%;
     --foreground: 40 30% 94%;

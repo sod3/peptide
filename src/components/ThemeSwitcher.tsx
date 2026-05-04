@@ -18,7 +18,7 @@ export const ThemeSwitcher = () => {
       <PopoverContent align="end" className="w-72 p-2">
         <div className="px-2 py-2">
           <div className="font-display text-sm font-semibold">Brand Palette</div>
-          <p className="text-xs text-muted-foreground">5 researched biotech themes — switch live.</p>
+          <p className="text-xs text-muted-foreground">5 researched biotech themes - switch live.</p>
         </div>
         <div className="space-y-1">
           {themes.map((t) => (

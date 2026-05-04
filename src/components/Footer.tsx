@@ -50,7 +50,7 @@ export const Footer = () => (
       </div>
 
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
-        <div>© {new Date().getFullYear()} Aevum Bio Laboratories, Inc. — Wilmington, DE, USA.</div>
+        <div>© {new Date().getFullYear()} Aevum Bio Laboratories, Inc. - Wilmington, DE, USA.</div>
         <div className="font-mono uppercase tracking-wider">SSL Secured · Stripe Verified · HIPAA-Aware Infrastructure</div>
       </div>
     </div>

@@ -24,9 +24,9 @@ const About = () => (
     <section className="container py-20">
       <div className="grid gap-6 md:grid-cols-3">
         {[
-          { n: "10,400+", l: "Researchers served"  },
-          { n: "1,820",   l: "Verified 5★ reviews" },
-          { n: "99.3%",   l: "Average HPLC purity" },
+          { n: "10,400+", l: "Researchers served" },
+          { n: "1,820", l: "Verified 5★ reviews" },
+          { n: "99.3%", l: "Average HPLC purity" },
         ].map((s) => (
           <div key={s.l} className="rounded-2xl border border-border bg-card p-8">
             <div className="font-display text-5xl font-semibold tracking-tight text-gradient">{s.n}</div>
@@ -45,9 +45,9 @@ const About = () => (
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             { i: FlaskConical, t: "cGMP-Aligned Synthesis", d: "Manufactured in ISO 9001 facilities using current Good Manufacturing Practice protocols." },
-            { i: Microscope,   t: "Independent Verification", d: "Every batch is tested by an external ISO 17025 lab — never by us." },
-            { i: ShieldCheck,  t: "Lot-Traceable",            d: "Each vial carries a unique lot number with a downloadable, lot-specific COA." },
-            { i: Award,        t: "Researcher-First Service", d: "Bulk pricing, institutional invoicing, and a 24-hour response guarantee." },
+            { i: Microscope, t: "Independent Verification", d: "Every batch is tested by an external ISO 17025 lab - never by us." },
+            { i: ShieldCheck, t: "Lot-Traceable", d: "Each vial carries a unique lot number with a downloadable, lot-specific COA." },
+            { i: Award, t: "Researcher-First Service", d: "Bulk pricing, institutional invoicing, and a 24-hour response guarantee." },
           ].map(({ i: Ic, t, d }) => (
             <div key={t} className="rounded-2xl border border-border bg-card p-7">
               <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-primary text-primary-foreground"><Ic className="h-5 w-5" /></div>

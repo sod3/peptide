@@ -47,15 +47,15 @@ const ProductDetail = () => {
               <span className="w-8 text-center font-mono">{qty}</span>
               <button onClick={() => setQty(qty + 1)} className="grid h-11 w-11 place-items-center rounded-full hover:bg-muted"><Plus className="h-4 w-4" /></button>
             </div>
-            <Button size="lg" className="rounded-full bg-gradient-primary text-primary-foreground shadow-glow">Add to Cart — ${p.price * qty}</Button>
+            <Button size="lg" className="rounded-full bg-gradient-primary text-primary-foreground shadow-glow">Add to Cart - ${p.price * qty}</Button>
             <Button size="lg" variant="outline" className="rounded-full">Buy Now</Button>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {[
               { i: ShieldCheck, t: "≥99% Purity" },
-              { i: Truck,       t: "Same-day ship" },
-              { i: FileCheck2,  t: "COA included" },
+              { i: Truck, t: "Same-day ship" },
+              { i: FileCheck2, t: "COA included" },
             ].map(({ i: Ic, t }) => (
               <div key={t} className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
                 <Ic className="h-5 w-5 text-accent" />
@@ -78,19 +78,19 @@ const ProductDetail = () => {
               <Microscope className="h-3 w-3" /> Lab Report
             </div>
             <h2 className="mt-3 font-display text-2xl font-semibold">Certificate of Analysis</h2>
-            <p className="mt-2 text-sm text-muted-foreground">Independent ISO 17025 verification — lot-traceable.</p>
+            <p className="mt-2 text-sm text-muted-foreground">Independent ISO 17025 verification - lot-traceable.</p>
             <Button className="mt-5 rounded-full"><FileCheck2 className="h-4 w-4" /> Download COA (PDF)</Button>
           </div>
           <dl className="md:col-span-2 grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
             {[
-              ["Lot Number",     `A-${new Date().getFullYear()}-${(p.id.charCodeAt(1) * 37) % 9000 + 1000}`],
-              ["Test Method",    "RP-HPLC + ESI-MS"],
-              ["HPLC Purity",    `${p.purity}%`],
+              ["Lot Number", `A-${new Date().getFullYear()}-${(p.id.charCodeAt(1) * 37) % 9000 + 1000}`],
+              ["Test Method", "RP-HPLC + ESI-MS"],
+              ["HPLC Purity", `${p.purity}%`],
               ["Mass Confirmed", "Yes (within ±0.1 Da)"],
-              ["Endotoxin",      "< 0.05 EU / mg"],
-              ["Appearance",     "White lyophilized powder"],
-              ["Storage",        "≤ -20°C, desiccated"],
-              ["Tested By",      "Eurofins-Independent (US)"],
+              ["Endotoxin", "< 0.05 EU / mg"],
+              ["Appearance", "White lyophilized powder"],
+              ["Storage", "≤ -20°C, desiccated"],
+              ["Tested By", "Eurofins-Independent (US)"],
             ].map(([k, v]) => (
               <div key={k} className="flex justify-between border-b border-border/60 pb-2">
                 <dt className="text-muted-foreground">{k}</dt><dd className="font-mono text-foreground">{v}</dd>

@@ -13,30 +13,30 @@ import {
 const trustLogos = ["ISO 9001", "cGMP", "USP <797>", "HPLC ≥99%", "ISO 17025 Lab", "Stripe Secure"];
 
 const benefits = [
-  { icon: Sparkles,    title: "Recovery & Repair",  desc: "BPC-157, TB-500 — researched for tissue and joint repair pathways." },
-  { icon: FlaskConical,title: "Growth & Performance", desc: "CJC-1295, Ipamorelin, Tesamorelin — pulsatile GH research." },
-  { icon: Beaker,      title: "Longevity & Skin",   desc: "GHK-Cu, Epitalon — dermal and senescence research models." },
-  { icon: Microscope,  title: "Metabolic Research", desc: "Semaglutide, Tirzepatide — GLP-1 / GIP receptor pathways." },
+  { icon: Sparkles, title: "Recovery & Repair", desc: "BPC-157, TB-500 - researched for tissue and joint repair pathways." },
+  { icon: FlaskConical, title: "Growth & Performance", desc: "CJC-1295, Ipamorelin, Tesamorelin - pulsatile GH research." },
+  { icon: Beaker, title: "Longevity & Skin", desc: "GHK-Cu, Epitalon - dermal and senescence research models." },
+  { icon: Microscope, title: "Metabolic Research", desc: "Semaglutide, Tirzepatide - GLP-1 / GIP receptor pathways." },
 ];
 
 const steps = [
   { n: "01", t: "Synthesize", d: "Manufactured in an ISO 9001, cGMP-aligned US partner facility." },
-  { n: "02", t: "Verify",     d: "Every batch independently tested by an ISO 17025 lab — HPLC + MS." },
-  { n: "03", t: "Ship",       d: "Cold-chain dispatch from Delaware. Same-day cutoff at 3pm ET." },
+  { n: "02", t: "Verify", d: "Every batch independently tested by an ISO 17025 lab - HPLC + MS." },
+  { n: "03", t: "Ship", d: "Cold-chain dispatch from Delaware. Same-day cutoff at 3pm ET." },
 ];
 
 const reviews = [
-  { name: "Dr. M. Hollings",   role: "Independent Research Lab, MA", text: "COA matched our internal HPLC re-test within 0.3%. The most consistent supplier we've used in three years.", stars: 5 },
-  { name: "L. Chen, PharmD",   role: "Compounding Consultant, CA",   text: "Packaging is genuinely cold-chain — not theatre. Documentation is the cleanest in the space.", stars: 5 },
-  { name: "R. Alvarez",        role: "Sports Science Researcher, FL",text: "Reordered four times. Purity, labeling, and lot traceability are all on point.", stars: 5 },
+  { name: "Dr. M. Hollings", role: "Independent Research Lab, MA", text: "COA matched our internal HPLC re-test within 0.3%. The most consistent supplier we've used in three years.", stars: 5 },
+  { name: "L. Chen, PharmD", role: "Compounding Consultant, CA", text: "Packaging is genuinely cold-chain - not theatre. Documentation is the cleanest in the space.", stars: 5 },
+  { name: "R. Alvarez", role: "Sports Science Researcher, FL", text: "Reordered four times. Purity, labeling, and lot traceability are all on point.", stars: 5 },
 ];
 
 const faqs = [
   { q: "Are Aevum Bio peptides third-party lab tested?", a: "Yes. Every batch is tested by an independent ISO 17025-accredited laboratory using HPLC and mass spectrometry. The Certificate of Analysis is downloadable on each product page and lot-traceable." },
-  { q: "Where do you ship from and how fast?",            a: "All orders ship from our Wilmington, Delaware facility via USPS Priority. Orders before 3pm ET ship the same business day. Free shipping on US orders over $200." },
-  { q: "What purity standard do you guarantee?",          a: "We guarantee a minimum of 99.0% HPLC purity on every research peptide we ship. Most batches measure between 99.2% and 99.6%." },
-  { q: "Are these products legal?",                       a: "Our peptides are sold strictly for in-vitro laboratory research. They are not for human or animal consumption. Customers are responsible for compliance with all federal, state, and local laws." },
-  { q: "Do you offer bulk pricing?",                      a: "Yes — institutional and bulk pricing is available for verified labs. Contact our research team via the Contact page." },
+  { q: "Where do you ship from and how fast?", a: "All orders ship from our Wilmington, Delaware facility via USPS Priority. Orders before 3pm ET ship the same business day. Free shipping on US orders over $200." },
+  { q: "What purity standard do you guarantee?", a: "We guarantee a minimum of 99.0% HPLC purity on every research peptide we ship. Most batches measure between 99.2% and 99.6%." },
+  { q: "Are these products legal?", a: "Our peptides are sold strictly for in-vitro laboratory research. They are not for human or animal consumption. Customers are responsible for compliance with all federal, state, and local laws." },
+  { q: "Do you offer bulk pricing?", a: "Yes - institutional and bulk pricing is available for verified labs. Contact our research team via the Contact page." },
 ];
 
 const Index = () => (
@@ -57,7 +57,7 @@ const Index = () => (
             <span className="text-gradient">verified to the molecule.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Aevum Bio supplies US-shipped, ≥99% pure peptides to qualified researchers — backed by an independent Certificate of Analysis on every single batch.
+            Aevum Bio supplies US-shipped, ≥99% pure peptides to qualified researchers - backed by an independent Certificate of Analysis on every single batch.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="group rounded-full bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-95">
@@ -70,7 +70,7 @@ const Index = () => (
           <div className="mt-10 grid max-w-md grid-cols-3 gap-6">
             {[
               { k: "10,400+", v: "Researchers" },
-              { k: "99.3%",   v: "Avg purity" },
+              { k: "99.3%", v: "Avg purity" },
               { k: "4.9 / 5", v: "1,820 reviews" },
             ].map((s) => (
               <div key={s.v}>
@@ -141,7 +141,10 @@ const Index = () => (
             <div key={s.n} className="relative rounded-2xl border border-border bg-card p-8 shadow-card">
               <div className="font-mono text-xs text-muted-foreground">STEP {s.n}</div>
               <div className="mt-3 grid h-12 w-12 place-items-center rounded-xl bg-gradient-primary text-primary-foreground">
-                {[FlaskConical, Microscope, PackageCheck][i]({ className: "h-5 w-5" } as any)}
+                {(() => {
+                  const Icon = [FlaskConical, Microscope, PackageCheck][i];
+                  return <Icon className="h-5 w-5" />;
+                })()}
               </div>
               <h3 className="mt-4 font-display text-2xl font-semibold">{s.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
