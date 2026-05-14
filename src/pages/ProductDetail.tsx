@@ -5,7 +5,7 @@ import vial from "@/assets/peptide-vial.png";
 import { Button } from "@/components/ui/button";
 import { ShieldCheck, FileCheck2, Truck, Microscope, ArrowLeft, Plus, Minus, Info } from "lucide-react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -13,171 +13,123 @@ const ProductDetail = () => {
   const [qty, setQty] = useState(1);
   if (!p) return <Navigate to="/shop" replace />;
 
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as any } }
+  };
+
   return (
     <Layout>
-      <div className="bg-background pt-32 pb-20">
-        <div className="container max-w-7xl">
-          <Link to="/shop" className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors hover:text-primary">
-            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" /> 
-            Back to Library
-          </Link>
-
-          <div className="mt-12 grid gap-16 lg:grid-cols-12">
-            {/* PRODUCT IMAGE SECTION */}
-            <div className="lg:col-span-6">
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="sticky top-32 aspect-square overflow-hidden rounded-[3rem] border border-border/40 bg-[#F3EFE9]/50 shadow-2xl"
-              >
-                <div className="absolute inset-x-6 top-6 z-10 flex justify-between items-start">
-                   <div className="rounded-full bg-primary/10 px-4 py-2 border border-primary/5 backdrop-blur-md">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary font-bold">
-                        Verified 99%+
-                      </span>
-                   </div>
-                </div>
-
-                <motion.img 
-                  src={vial} 
-                  alt={p.name} 
-                  className="absolute inset-0 m-auto h-[75%] w-auto object-contain drop-shadow-2xl" 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/40 to-transparent" />
-              </motion.div>
-            </div>
-
-            {/* PRODUCT INFO SECTION */}
-            <div className="lg:col-span-6 space-y-12">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <div className="font-mono text-[11px] uppercase tracking-[0.3em] text-primary font-bold">
-                  {p.category} · {p.mg}mg / Vial
-                </div>
-                <h1 className="mt-4 font-display text-5xl font-semibold tracking-tighter md:text-7xl">
-                  {p.name}
-                </h1>
-                <p className="mt-6 text-xl leading-relaxed text-muted-foreground/80">
-                  {p.tagline}
-                </p>
-
-                <div className="mt-10 flex items-center gap-6">
-                  <div className="font-display text-5xl font-semibold tracking-tight text-foreground">
-                    ${p.price}
-                  </div>
-                  <div className="h-10 w-px bg-border/40" />
-                  <div className="text-[13px] leading-tight text-muted-foreground/60 uppercase tracking-widest font-mono">
-                    USD · Free Cold-Chain <br/> Shipping
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="space-y-6"
-              >
-                <p className="text-lg leading-relaxed text-foreground/80">
-                  {p.description}
-                </p>
-
-                <div className="flex flex-wrap items-center gap-4 py-4">
-                   <div className="inline-flex h-14 items-center rounded-2xl border border-border/40 bg-card p-1">
-                      <button 
-                        onClick={() => setQty(Math.max(1, qty - 1))} 
-                        className="grid h-12 w-12 place-items-center rounded-xl transition-colors hover:bg-muted"
-                      >
-                        <Minus className="h-4 w-4" />
-                      </button>
-                      <span className="w-12 text-center font-mono text-sm font-bold">{qty}</span>
-                      <button 
-                        onClick={() => setQty(qty + 1)} 
-                        className="grid h-12 w-12 place-items-center rounded-xl transition-colors hover:bg-muted"
-                      >
-                        <Plus className="h-4 w-4" />
-                      </button>
-                   </div>
-                   
-                   <Button size="lg" variant="premium" className="flex-1 h-14 text-base shadow-2xl">
-                     Purchase for Research · ${(p.price * qty).toFixed(2)}
-                   </Button>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { i: ShieldCheck, t: "99.8% Lot Purity" },
-                    { i: Truck, t: "Temperature Controlled" },
-                    { i: FileCheck2, t: "Digital Lab COA" },
-                    { i: Microscope, t: "Full MS & NMR Data" },
-                  ].map(({ i: Ic, t }) => (
-                    <div key={t} className="flex items-center gap-3 rounded-2xl border border-border/40 bg-card p-5">
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                        <Ic className="h-5 w-5" />
-                      </div>
-                      <span className="text-[13px] font-bold uppercase tracking-widest text-foreground/80">{t}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="rounded-3xl border border-primary/20 bg-primary/5 p-6 flex gap-4">
-                  <Info className="h-5 w-5 text-primary shrink-0" />
-                  <p className="text-sm leading-relaxed text-primary/80">
-                    <strong className="text-primary uppercase tracking-widest text-[11px] block mb-1">Strict Research Disclosure:</strong>
-                    This compound is synthesized for in-vitro laboratory research and development use only. It is not intended for human consumption or veterinary administration.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* TECHNICAL SPECS (COA) */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="rounded-[3rem] border border-border/40 bg-surface p-8 md:p-12 text-white"
-              >
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
-                  <div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-primary font-bold">
-                       <Microscope className="h-3 w-3" /> Technical Analysis
-                    </div>
-                    <h2 className="mt-4 font-display text-3xl font-semibold">Certificate of Analysis</h2>
-                    <p className="mt-2 text-muted-foreground/60 text-[15px]">Digital HPLC verification for Lot #A-2026-XQ41</p>
-                  </div>
-                  <Button variant="outline" className="h-12 border-white/20 bg-white/5 text-white hover:bg-primary hover:border-primary">
-                    <FileCheck2 className="mr-2 h-4 w-4" /> Download Full COA
-                  </Button>
-                </div>
-
-                <div className="grid gap-x-12 gap-y-6 md:grid-cols-2">
-                   {[
-                    ["Lot Number", `A-${new Date().getFullYear()}-41829`],
-                    ["Analysis Method", "RP-HPLC + ESI-MS"],
-                    ["Verified Purity", `${p.purity}%`],
-                    ["Mass Trace", "Confirmed (±0.1 Da)"],
-                    ["Endotoxin Level", "< 0.05 EU/mg"],
-                    ["Structure Verification", "NMR Spectrometry"],
-                    ["Appearance", "White Lyophilizate"],
-                    ["Lab Accreditation", "ISO 17025 Certified"],
-                   ].map(([k, v]) => (
-                    <div key={k} className="flex justify-between border-b border-white/10 pb-4">
-                      <span className="text-[12px] uppercase tracking-widest text-muted-foreground/40 font-bold">{k}</span>
-                      <span className="font-mono text-sm text-primary font-bold">{v}</span>
-                    </div>
-                   ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+      <div className="container pt-32 pb-8">
+        <Link to="/shop" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+          <ArrowLeft className="h-4 w-4" /> Back to catalog
+        </Link>
       </div>
+
+      <section className="container grid gap-16 py-8 lg:grid-cols-2 lg:items-start">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative aspect-square overflow-hidden rounded-[3rem] border border-border/40 bg-gradient-to-b from-surface to-background shadow-sm"
+        >
+          <div className="absolute inset-0 grid-bg opacity-30" />
+          <motion.img 
+            initial={{ y: 20, rotate: -2 }}
+            animate={{ y: 0, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            src={vial} alt={p.name} width={800} height={800} loading="eager" 
+            className="absolute inset-0 m-auto h-[80%] w-auto object-contain drop-shadow-xl" 
+          />
+          <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-primary border border-white">
+            <ShieldCheck className="h-4 w-4" /> {p.purity}% HPLC Verified
+          </div>
+        </motion.div>
+
+        <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+          <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">{p.category} · {p.mg}mg / vial</motion.div>
+          <motion.h1 variants={fadeIn} className="mt-3 font-display text-5xl font-semibold tracking-tight text-foreground md:text-6xl">{p.name}</motion.h1>
+          <motion.p variants={fadeIn} className="mt-4 text-xl text-muted-foreground font-light leading-relaxed">{p.tagline}</motion.p>
+
+          <motion.div variants={fadeIn} className="mt-8 flex items-end gap-5 border-b border-border/40 pb-8">
+            <div className="font-display text-5xl font-semibold tracking-tight text-foreground">${p.price}</div>
+            <div className="pb-1.5 font-mono text-xs uppercase tracking-widest text-muted-foreground">USD · <span className="text-primary">Free US Ship &gt; $200</span></div>
+          </motion.div>
+
+          <motion.p variants={fadeIn} className="mt-8 leading-loose text-foreground/80 font-light text-base">{p.description}</motion.p>
+
+          <motion.div variants={fadeIn} className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="inline-flex h-14 items-center rounded-full border border-border/60 bg-white p-1 shadow-sm">
+              <button onClick={() => setQty(Math.max(1, qty - 1))} className="grid h-12 w-12 place-items-center rounded-full text-muted-foreground hover:bg-surface hover:text-foreground transition-colors"><Minus className="h-5 w-5" /></button>
+              <span className="w-10 text-center font-mono text-lg font-medium">{qty}</span>
+              <button onClick={() => setQty(qty + 1)} className="grid h-12 w-12 place-items-center rounded-full text-muted-foreground hover:bg-surface hover:text-foreground transition-colors"><Plus className="h-5 w-5" /></button>
+            </div>
+            <Button size="lg" className="h-14 rounded-full bg-gradient-primary text-primary-foreground shadow-glow flex-1 min-w-[200px] text-base font-medium transition-transform hover:scale-[1.02]">
+              Add to Cart · ${(p.price * qty).toFixed(2)}
+            </Button>
+            <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white transition-colors hover:bg-surface text-base">Buy Now</Button>
+          </motion.div>
+
+          <motion.div variants={fadeIn} className="mt-12 grid gap-4 sm:grid-cols-3">
+            {[
+              { i: ShieldCheck, t: "≥99% Purity" },
+              { i: Truck, t: "Same-day ship" },
+              { i: FileCheck2, t: "COA included" },
+            ].map(({ i: Ic, t }) => (
+              <div key={t} className="flex items-center gap-3.5 rounded-2xl border border-border/40 bg-white/50 p-5 shadow-sm">
+                <div className="flex h-10 w-10 shrink-0 place-items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Ic className="h-5 w-5" />
+                </div>
+                <span className="text-[13px] font-medium tracking-wide">{t}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div variants={fadeIn} className="mt-8 flex items-start gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-[13px] leading-relaxed text-muted-foreground">
+            <Info className="h-5 w-5 shrink-0 text-primary mt-0.5" />
+            <div>
+              <strong className="text-foreground tracking-wide block mb-1">Research Disclaimer.</strong> 
+              <span className="font-light">{p.name} is sold strictly for in-vitro laboratory research. Not for human or veterinary use. Aevum Bio does not provide medical, dosage, or treatment guidance.</span>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Lab report */}
+      <section className="container pb-32 pt-10">
+        <motion.div 
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+          className="grid gap-10 rounded-[2.5rem] border border-border/60 bg-white p-8 md:grid-cols-3 md:p-14 shadow-sm"
+        >
+          <div>
+            <div className="inline-flex items-center gap-2.5 rounded-full bg-primary/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-primary font-semibold">
+              <Microscope className="h-4 w-4" /> Lab Report
+            </div>
+            <h2 className="mt-5 font-display text-3xl font-semibold">Certificate of Analysis</h2>
+            <p className="mt-3 text-[15px] text-muted-foreground font-light leading-relaxed">Independent ISO 17025 verification with batch matching and lot-traceability.</p>
+            <Button className="mt-8 rounded-full h-12 px-6 bg-surface text-foreground hover:bg-border/60 hover:text-primary transition-colors border border-border">
+              <FileCheck2 className="h-4 w-4 mr-2" /> Download COA (PDF)
+            </Button>
+          </div>
+          <dl className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-[15px]">
+            {[
+              ["Lot Number", `A-${new Date().getFullYear()}-${(p.id.charCodeAt(1) * 37) % 9000 + 1000}`],
+              ["Test Method", "RP-HPLC + ESI-MS"],
+              ["HPLC Purity", `${p.purity}%`],
+              ["Mass Confirmed", "Yes (within ±0.1 Da)"],
+              ["Endotoxin", "< 0.05 EU / mg"],
+              ["Appearance", "White lyophilized powder"],
+              ["Storage", "≤ -20°C, desiccated"],
+              ["Tested By", "Eurofins-Independent (US)"],
+            ].map(([k, v]) => (
+              <div key={k} className="flex flex-col justify-between border-b border-border/40 pb-4">
+                <dt className="text-muted-foreground font-light mb-1">{k}</dt>
+                <dd className="font-mono text-foreground font-medium">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </motion.div>
+      </section>
     </Layout>
   );
 };

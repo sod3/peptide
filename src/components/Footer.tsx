@@ -1,72 +1,60 @@
 import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 export const Footer = () => (
-  <footer className="mt-24 border-t border-border/40 bg-surface p-6 md:p-12">
-    <div className="mx-auto max-w-7xl rounded-[3rem] bg-background/5 p-8 md:p-16 backdrop-blur-sm">
-      <div className="grid gap-16 lg:grid-cols-12 text-foreground">
-        <div className="lg:col-span-4 space-y-8">
-          <Logo />
-          <p className="max-w-sm text-[15px] leading-relaxed text-muted-foreground/80">
+  <footer className="dark-card mt-24">
+    <div className="container py-20 pb-12">
+      <div className="grid gap-12 md:grid-cols-5 md:gap-8">
+        <div className="md:col-span-2 space-y-6">
+          {/* Inject a white fill for logo since footer is dark if Logo component accepts it, or just use className to invert. The logo is SVG typically. */}
+          <div className="text-white brightness-200 contrast-100">
+            <Logo />
+          </div>
+          <p className="max-w-sm text-sm text-white/70 leading-relaxed font-light">
             Aevum Bio supplies third-party tested research peptides to licensed laboratories and qualified researchers across the United States.
           </p>
-          <div className="flex flex-wrap gap-2">
-            {["cGMP-Aligned", "ISO 9001", "USA Shipped", "HPLC ≥99%"].map((b) => (
-              <span key={b} className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-                {b}
-              </span>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {["cGMP-Aligned", "ISO 9001 Facility", "USA Shipped", "HPLC ≥99%"].map((b) => (
+              <span key={b} className="font-mono text-[10px] uppercase tracking-widest rounded-sm border border-white/20 bg-white/5 px-3 py-1.5 text-white/80">{b}</span>
             ))}
           </div>
         </div>
-
-        <div className="lg:col-span-2">
-          <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/50">Catalog</h4>
-          <ul className="space-y-4 text-[14px]">
-            <li><Link to="/shop" className="text-muted-foreground transition-colors hover:text-primary">All Peptides</Link></li>
-            <li><Link to="/shop" className="text-muted-foreground transition-colors hover:text-primary">Bestsellers</Link></li>
-            <li><Link to="/shop" className="text-muted-foreground transition-colors hover:text-primary">New Arrivals</Link></li>
-            <li><Link to="/shop" className="text-muted-foreground transition-colors hover:text-primary">Research Grade</Link></li>
+        <div>
+          <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Catalog</h4>
+          <ul className="space-y-3 text-sm text-white/60">
+            <li><Link to="/shop" className="transition-colors hover:text-white">All Peptides</Link></li>
+            <li><Link to="/shop" className="transition-colors hover:text-white">Bestsellers</Link></li>
+            <li><Link to="/shop" className="transition-colors hover:text-white">New Arrivals</Link></li>
+            <li><Link to="/shop" className="transition-colors hover:text-white">Bulk Pricing</Link></li>
           </ul>
         </div>
-
-        <div className="lg:col-span-2">
-          <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/50">Company</h4>
-          <ul className="space-y-4 text-[14px]">
-            <li><Link to="/about" className="text-muted-foreground transition-colors hover:text-primary">About Aevum</Link></li>
-            <li><Link to="/about" className="text-muted-foreground transition-colors hover:text-primary">Lab Standards</Link></li>
-            <li><Link to="/contact" className="text-muted-foreground transition-colors hover:text-primary">Contact</Link></li>
-            <li><a href="#" className="text-muted-foreground transition-colors hover:text-primary">Press Kit</a></li>
+        <div>
+          <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Company</h4>
+          <ul className="space-y-3 text-sm text-white/60">
+            <li><Link to="/about" className="transition-colors hover:text-white">About</Link></li>
+            <li><Link to="/about" className="transition-colors hover:text-white">Lab Standards</Link></li>
+            <li><Link to="/contact" className="transition-colors hover:text-white">Contact</Link></li>
+            <li><a href="#" className="transition-colors hover:text-white">Press</a></li>
           </ul>
         </div>
-
-        <div className="lg:col-span-4">
-          <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/50">Stay Updated</h4>
-          <p className="mb-6 text-[13px] text-muted-foreground/80">Join our newsletter for the latest research breakthroughs.</p>
-          <div className="relative">
-            <input 
-              type="email" 
-              placeholder="researcher@lab.org" 
-              className="w-full h-14 rounded-2xl border border-white/10 bg-white/5 px-6 text-sm outline-none transition-all focus:border-primary/50 focus:bg-white/[0.08]"
-            />
-            <button className="absolute right-2 top-2 h-10 rounded-xl bg-primary px-4 text-[12px] font-medium text-primary-foreground transition-transform active:scale-95">
-              Subscribe
-            </button>
-          </div>
+        <div>
+          <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Legal</h4>
+          <ul className="space-y-3 text-sm text-white/60">
+            <li><a href="#" className="transition-colors hover:text-white">Terms</a></li>
+            <li><a href="#" className="transition-colors hover:text-white">Privacy</a></li>
+            <li><a href="#" className="transition-colors hover:text-white">Shipping & Returns</a></li>
+            <li><a href="#" className="transition-colors hover:text-white">Research Disclaimer</a></li>
+          </ul>
         </div>
       </div>
 
-      <div className="mt-20 rounded-3xl border border-white/10 bg-white/5 p-8 text-[13px] leading-relaxed text-muted-foreground/60">
-        <strong className="text-foreground/80">Research Laboratory Disclaimer:</strong> Products sold by Aevum Bio are intended exclusively for in-vitro laboratory research and are not for human or veterinary use. They are not to be used as food, cosmetics, or medicines. Any reliance on the information provided on this website is at your own risk.
+      <div className="mt-16 rounded-xl border border-white/10 bg-white/5 p-6 text-xs leading-relaxed text-white/60 font-light">
+        <strong className="text-white font-medium">For research use only.</strong> Products sold by Aevum Bio are intended exclusively for in-vitro laboratory research and are not for human or veterinary use, food, or cosmetic applications. Customers must be qualified, licensed researchers and assume full responsibility for compliance with all applicable laws.
       </div>
 
-      <div className="mt-12 flex flex-col items-center justify-between gap-8 border-t border-white/10 pt-12 text-[11px] text-muted-foreground/40 md:flex-row">
-        <div>© {new Date().getFullYear()} Aevum Bio Laboratories, Inc. Wilmington, DE.</div>
-        <div className="flex gap-8 font-mono uppercase tracking-[0.2em]">
-          <span>SSL Secured</span>
-          <span>Stripe verified</span>
-          <span>cGMP Facility</span>
-        </div>
+      <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center">
+        <div>© {new Date().getFullYear()} Aevum Bio Laboratories, Inc. - Wilmington, DE, USA.</div>
+        <div className="font-mono uppercase tracking-widest text-[10px]">SSL Secured · Stripe Verified · HIPAA-Aware Infrastructure</div>
       </div>
     </div>
   </footer>

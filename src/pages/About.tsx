@@ -1,97 +1,98 @@
 import { Layout } from "@/components/Layout";
 import molecule from "@/assets/molecule.jpg";
-import { Award, FlaskConical, ShieldCheck, Microscope, ArrowRight } from "lucide-react";
+import { Award, FlaskConical, ShieldCheck, Microscope } from "lucide-react";
 import { motion } from "framer-motion";
 
-const About = () => (
-  <Layout>
-    <section className="relative overflow-hidden bg-hero pt-32 pb-24">
-      <div className="container relative z-10 grid gap-16 lg:grid-cols-12 items-center">
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="lg:col-span-12 text-center"
-        >
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary font-bold">Foundation & Purpose</div>
-          <h1 className="mt-8 font-display text-6xl font-semibold leading-[0.95] tracking-tighter md:text-8xl lg:text-[100px]">
-            Synthesized for <br/><span className="text-primary italic">Absolute Truth.</span>
-          </h1>
-          <p className="mt-10 mx-auto max-w-3xl text-xl leading-relaxed text-muted-foreground/80 md:text-2xl">
-            Aevum Bio was founded by biochemists frustrated by the lack of transparency in research supply chains. We don't just sell compounds; we deliver verified scientific data.
-          </p>
-        </motion.div>
+const About = () => {
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as any } }
+  };
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          className="lg:col-span-12 relative aspect-[21/9] overflow-hidden rounded-[4rem] border border-border/40 shadow-2xl"
-        >
-          <img src={molecule} alt="Molecular helix" className="h-full w-full object-cover grayscale-[0.2] transition-transform hover:scale-105 duration-1000" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-        </motion.div>
-      </div>
-    </section>
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }
+    }
+  };
 
-    <section className="container py-32">
-      <div className="grid gap-8 md:grid-cols-3">
-        {[
-          { n: "15,200+", l: "Institutions & Researchers" },
-          { n: "1,800+", l: "Validated Lab Protocols" },
-          { n: "99.8%", l: "Average Lot Conformity" },
-        ].map((s, i) => (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            key={s.l} 
-            className="rounded-[2.5rem] border border-border/40 bg-card p-12 text-center hover:bg-muted transition-colors"
-          >
-            <div className="font-display text-6xl font-semibold tracking-tighter text-foreground mb-4">{s.n}</div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-bold">{s.l}</div>
+  return (
+    <Layout>
+      <section className="bg-gradient-to-b from-surface to-background border-b border-border/40 pb-16 pt-32">
+        <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pr-8">
+            <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">About Aevum Bio</motion.div>
+            <motion.h1 variants={fadeIn} className="mt-4 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">
+              Built by scientists,<br />
+              <span className="text-primary-glow font-light italic">trusted by labs.</span>
+            </motion.h1>
+            <motion.p variants={fadeIn} className="mt-8 text-xl text-muted-foreground font-light leading-relaxed">
+              Aevum Bio was founded in 2021 by a team of biochemists frustrated by the inconsistency of the research-peptide market. Our mission is simple: ship pharmaceutical-grade material with documentation a regulator could read.
+            </motion.p>
           </motion.div>
-        ))}
-      </div>
-    </section>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="overflow-hidden rounded-[3rem] border border-border/40 shadow-sm"
+          >
+            <img src={molecule} alt="Molecular helix" width={1280} height={832} className="h-full w-full object-cover transition-transform duration-[10s] hover:scale-110" loading="lazy" />
+          </motion.div>
+        </div>
+      </section>
 
-    <section className="bg-surface py-32">
-      <div className="container">
-        <div className="grid gap-16 lg:grid-cols-12 items-center">
-          <div className="lg:col-span-5">
-             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary font-bold">The Standard</div>
-             <h2 className="mt-6 font-display text-4xl font-semibold tracking-tighter md:text-6xl text-background">
-                Four Pillars of <br/>Scientific Integrity.
-             </h2>
-             <p className="mt-8 text-lg text-muted-foreground/60 leading-relaxed">
-                Our operations bridge the gap between pharmaceutical manufacturing standards and the needs of private research laboratories.
-             </p>
-          </div>
-          <div className="lg:col-span-7 grid gap-6 md:grid-cols-2">
+      <section className="container py-24 md:py-32">
+        <motion.div 
+          className="grid gap-8 md:grid-cols-3"
+          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+        >
+          {[
+            { n: "10,400+", l: "Researchers served" },
+            { n: "1,820", l: "Verified 5★ reviews" },
+            { n: "99.3%", l: "Average HPLC purity" },
+          ].map((s) => (
+            <motion.div key={s.l} variants={fadeIn} className="rounded-[2.5rem] border border-border/60 bg-white p-10 text-center transition-all hover:shadow-elegant hover:-translate-y-1">
+              <div className="font-display text-6xl font-semibold tracking-tight text-primary">{s.n}</div>
+              <div className="mt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">{s.l}</div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      <section className="bg-surface/50 py-24 md:py-32">
+        <div className="container">
+          <motion.div 
+            className="mx-auto max-w-2xl text-center"
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
+          >
+            <div className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">Our Standards</div>
+            <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl text-foreground">Four pillars. Zero compromise.</h2>
+          </motion.div>
+          
+          <motion.div 
+            className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+          >
             {[
-              { i: FlaskConical, t: "cGMP-Aligned", d: "Synthesized in high-containment ISO 9001 labs following rigorous manufacturing protocols." },
-              { i: Microscope, t: "Lot-Traceable", d: "Every single vial corresponds to a specific HPLC/MS report, never 'sample' batches." },
-              { i: ShieldCheck, t: "External HPLC", d: "Third-party testing performed by accredited US-based laboratories for objective purity." },
-              { i: Award, t: "Bulk Invoicing", d: "Customized institutional accounts for universities and large-scale research projects." },
-            ].map(({ i: Ic, t, d }, i) => (
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                key={t} 
-                className="rounded-[2rem] border border-white/10 bg-white/5 p-8 group hover:bg-white/10 transition-all"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground mb-6">
-                   <Ic className="h-5 w-5" />
+              { i: FlaskConical, t: "cGMP-Aligned Synthesis", d: "Manufactured in ISO 9001 facilities using current Good Manufacturing Practice protocols." },
+              { i: Microscope, t: "Independent Verification", d: "Every batch is tested by an external ISO 17025 lab - never by us." },
+              { i: ShieldCheck, t: "Lot-Traceable", d: "Each vial carries a unique lot number with a downloadable, lot-specific COA." },
+              { i: Award, t: "Researcher-First Support", d: "Bulk pricing, institutional invoicing, and a guaranteed 24-hour response time." },
+            ].map(({ i: Ic, t, d }) => (
+              <motion.div key={t} variants={fadeIn} className="rounded-[2rem] border border-border/60 bg-white p-8 transition-all hover:shadow-elegant">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/5 text-primary border border-primary/10">
+                  <Ic className="h-6 w-6 stroke-[1.5]" />
                 </div>
-                <h3 className="font-display text-2xl font-semibold text-white mb-3">{t}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground/60">{d}</p>
+                <h3 className="mt-6 font-display text-xl font-semibold text-foreground tracking-tight">{t}</h3>
+                <p className="mt-3 text-[15px] text-muted-foreground font-light leading-relaxed">{d}</p>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
-  </Layout>
-);
+      </section>
+    </Layout>
+  );
+};
 
 export default About;

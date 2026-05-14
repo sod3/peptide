@@ -8,7 +8,7 @@ export default {
     container: { center: true, padding: "1.5rem", screens: { "2xl": "1320px" } },
     extend: {
       fontFamily: {
-        display: ["Fraunces", "Georgia", "serif"],
+        display: ["Cormorant Garamond", "Fraunces", "Georgia", "serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
@@ -47,7 +47,6 @@ export default {
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "premium": "var(--ease-premium)",
       },
     },
   },

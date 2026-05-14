@@ -2,119 +2,101 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 
 const Contact = () => {
   const [sent, setSent] = useState(false);
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as any } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
   return (
     <Layout>
-      <section className="relative overflow-hidden bg-hero pt-32 pb-24 border-b border-border/20">
-        <div className="container relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary font-bold">Inquiries & Support</div>
-            <h1 className="mt-8 font-display text-6xl font-semibold leading-[0.95] tracking-tighter md:text-8xl">
-              Talk to a <span className="text-primary italic">Researcher.</span>
-            </h1>
-            <p className="mt-10 mx-auto max-w-2xl text-xl leading-relaxed text-muted-foreground/80 md:text-2xl">
-              From institutional ordering to technical COA questions, our Delaware-based team is ready to support your laboratory's needs.
-            </p>
-          </motion.div>
-        </div>
+      <section className="bg-gradient-to-b from-surface to-background border-b border-border/40 pb-16 pt-32">
+        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="container">
+          <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">Get in touch</motion.div>
+          <motion.h1 variants={fadeIn} className="mt-3 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">Talk to a researcher.</motion.h1>
+          <motion.p variants={fadeIn} className="mt-4 max-w-xl text-lg text-muted-foreground font-light leading-relaxed">We reply within one business day from our Delaware research office.</motion.p>
+        </motion.div>
       </section>
 
-      <section className="container py-24">
-        <div className="grid gap-16 lg:grid-cols-12 divide-x divide-border/20">
-          {/* CONTACT INFO */}
-          <div className="lg:col-span-4 space-y-12">
+      <section className="container grid gap-12 py-20 lg:grid-cols-5 md:py-28">
+        <motion.div 
+          className="space-y-6 lg:col-span-2"
+          initial="hidden" animate="visible" variants={staggerContainer}
+        >
+          {[
+            { i: Mail,  t: "Email",   v: "research@aevum.bio" },
+            { i: Phone, t: "Phone",   v: "+1 (302) 555-0188" },
+            { i: MapPin,t: "Office",  v: "1209 Orange St, Wilmington, DE 19801" },
+          ].map(({ i: Ic, t, v }) => (
+            <motion.div key={t} variants={fadeIn} className="flex items-start gap-5 rounded-[2rem] border border-border/60 bg-white p-6 shadow-sm transition-all hover:shadow-elegant">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/5 text-primary border border-primary/10">
+                <Ic className="h-5 w-5 stroke-[1.5]" />
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-1">{t}</div>
+                <div className="text-[15px] font-medium text-foreground">{v}</div>
+              </div>
+            </motion.div>
+          ))}
+          
+          <motion.div variants={fadeIn} className="aspect-[4/3] overflow-hidden rounded-[2rem] border border-border/60 bg-surface shadow-sm relative">
+            <div className="grid-bg h-full w-full bg-gradient-to-br from-surface to-background/50 absolute inset-0 mix-blend-multiply opacity-50" />
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-4 text-center border border-white shadow-sm transition-transform hover:scale-105">
+                <MapPin className="mx-auto h-6 w-6 text-primary mb-2" />
+                <div className="text-[15px] font-medium text-foreground">Wilmington, DE</div>
+                <div className="mt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">39.7459° N, 75.5466° W</div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <motion.form
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          onSubmit={(e) => { e.preventDefault(); setSent(true); toast({ title: "Message sent", description: "We'll respond within one business day." }); }}
+          className="rounded-[2.5rem] border border-border/60 bg-white p-8 md:p-12 shadow-sm lg:col-span-3 transition-all hover:shadow-elegant"
+        >
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Send an inquiry</h2>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <div>
-              <h3 className="font-display text-2xl font-semibold tracking-tight mb-8">Technical Desk</h3>
-              <div className="space-y-4">
-                {[
-                  { i: Mail,  t: "Direct Email",   v: "research@aevum.bio", c: "Reply within 2 hours" },
-                  { i: Phone, t: "Official Line",   v: "+1 (302) 555-0188", c: "Mon-Fri, 9am - 5pm ET" },
-                  { i: MapPin,t: "Wilmington HQ",  v: "1209 Orange St, DE 19801", c: "Distribution Center" },
-                ].map(({ i: Ic, t, v, c }) => (
-                  <div key={t} className="group rounded-[2rem] border border-border/40 bg-card p-6 hover:bg-muted transition-all duration-300">
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-                        <Ic className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground font-bold">{t}</div>
-                        <div className="text-base font-bold text-foreground">{v}</div>
-                        <div className="text-[11px] text-primary/60 font-medium">{c}</div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">First name</label>
+              <Input required placeholder="Jane" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
             </div>
-
-            <div className="aspect-square overflow-hidden rounded-[3rem] border border-border bg-surface relative group">
-              <div className="absolute inset-0 bg-[#1A1A1A] transition-colors group-hover:bg-[#111]" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="text-center">
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-white/5 border border-white/10 mb-6">
-                       <MapPin className="h-8 w-8 text-primary" />
-                    </div>
-                    <div className="text-white font-display text-2xl font-semibold">Silicon Coast</div>
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-2">Delaware, United States</div>
-                 </div>
-              </div>
+            <div>
+              <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Last name</label>
+              <Input required placeholder="Doe, PhD" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Email</label>
+              <Input required type="email" placeholder="jane@lab.edu" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Institution / Organization</label>
+              <Input placeholder="University or Lab Name" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+            </div>
+            <div className="sm:col-span-2 mt-2">
+              <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">How can we assist?</label>
+              <Textarea required rows={6} placeholder="Tell us about your research needs…" className="rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20 resize-none p-4" />
             </div>
           </div>
-
-          {/* MESSAGE FORM */}
-          <div className="lg:col-span-8 lg:pl-16">
-            <h3 className="font-display text-3xl font-semibold tracking-tight mb-10 flex items-center gap-4">
-              <MessageSquare className="h-8 w-8 text-primary" />
-              Secure Message Gateway
-            </h3>
-            
-            <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); toast({ title: "Signal Received", description: "A researcher will respond to your inquiry shortly." }); }}
-              className="grid gap-8"
-            >
-              <div className="grid gap-8 sm:grid-cols-2">
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Investigator First Name</label>
-                  <Input required placeholder="Jane" className="h-14 rounded-2xl border-border/40 bg-background/50 focus:bg-white transition-all shadow-sm focus:shadow-xl focus:shadow-primary/5" />
-                </div>
-                <div className="space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Investigator Last Name</label>
-                  <Input required placeholder="Doe, PhD" className="h-14 rounded-2xl border-border/40 bg-background/50 focus:bg-white transition-all shadow-sm focus:shadow-xl focus:shadow-primary/5" />
-                </div>
-                <div className="sm:col-span-2 space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Institutional Email</label>
-                  <Input required type="email" placeholder="j.doe@mit.edu" className="h-14 rounded-2xl border-border/40 bg-background/50 focus:bg-white transition-all shadow-sm focus:shadow-xl focus:shadow-primary/5" />
-                </div>
-                <div className="sm:col-span-2 space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Lab / Institution Name</label>
-                  <Input placeholder="Center for Biological Excellence" className="h-14 rounded-2xl border-border/40 bg-background/50 focus:bg-white transition-all shadow-sm focus:shadow-xl focus:shadow-primary/5" />
-                </div>
-                <div className="sm:col-span-2 space-y-3">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">Research Inquiry Details</label>
-                  <Textarea required className="rounded-[2rem] border-border/40 bg-background/50 focus:bg-white transition-all p-6 shadow-sm focus:shadow-xl focus:shadow-primary/5" rows={6} placeholder="Please detail your request or technical question regarding our synthesis protocols..." />
-                </div>
-              </div>
-              
-              <div className="pt-4">
-                <Button type="submit" size="lg" disabled={sent} variant="premium" className="w-full sm:w-auto px-12 h-16 text-base">
-                  {sent ? "Message Transmitted ✓" : (<><Send className="mr-2 h-5 w-5" /> Dispatch Inquiry</>)}
-                </Button>
-                <p className="mt-4 text-[11px] text-muted-foreground/60 font-medium">
-                  By submitting this form, you acknowledge that all communications are handled with strict privacy protocols.
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
+          <Button type="submit" size="lg" disabled={sent} className="mt-8 h-14 w-full sm:w-auto px-10 rounded-full bg-gradient-primary text-primary-foreground shadow-glow text-base transition-transform hover:scale-105">
+            {sent ? "Message Sent ✓" : (<><Send className="h-4 w-4 mr-2" /> Send Inquiry</>)}
+          </Button>
+        </motion.form>
       </section>
     </Layout>
   );
