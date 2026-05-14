@@ -11,7 +11,7 @@ export const Footer = () => (
             <Logo />
           </div>
           <p className="max-w-sm text-sm text-white/70 leading-relaxed font-light">
-            Aevum Bio supplies third-party tested research peptides to licensed laboratories and qualified researchers across the United States.
+            Peptide Bio supplies third-party tested research peptides to licensed laboratories and qualified researchers across the United States.
           </p>
           <div className="flex flex-wrap gap-2 pt-2">
             {["cGMP-Aligned", "ISO 9001 Facility", "USA Shipped", "HPLC ≥99%"].map((b) => (
@@ -40,21 +40,21 @@ export const Footer = () => (
         <div>
           <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Legal</h4>
           <ul className="space-y-3 text-sm text-white/60">
-            <li><a href="#" className="transition-colors hover:text-white">Terms</a></li>
-            <li><a href="#" className="transition-colors hover:text-white">Privacy</a></li>
-            <li><a href="#" className="transition-colors hover:text-white">Shipping & Returns</a></li>
-            <li><a href="#" className="transition-colors hover:text-white">Research Disclaimer</a></li>
+            <li><Link to="/legal" className="transition-colors hover:text-white">Research Terms</Link></li>
+            <li><Link to="/legal" className="transition-colors hover:text-white">Privacy Policy</Link></li>
+            <li><Link to="/contact" className="transition-colors hover:text-white">Shipping & Returns</Link></li>
+            <li><Link to="/legal" className="transition-colors hover:text-white">Research Disclaimer</Link></li>
           </ul>
         </div>
       </div>
 
       <div className="mt-16 rounded-xl border border-white/10 bg-white/5 p-6 text-xs leading-relaxed text-white/60 font-light">
-        <strong className="text-white font-medium">For research use only.</strong> Products sold by Aevum Bio are intended exclusively for in-vitro laboratory research and are not for human or veterinary use, food, or cosmetic applications. Customers must be qualified, licensed researchers and assume full responsibility for compliance with all applicable laws.
+        <strong className="text-white font-medium">For research use only.</strong> Products sold by Peptide Bio are intended exclusively for in-vitro laboratory research and are not for human or veterinary use, food, or cosmetic applications. Customers must be qualified, licensed researchers and assume full responsibility for compliance with all applicable laws.
       </div>
 
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center">
-        <div>© {new Date().getFullYear()} Aevum Bio Laboratories, Inc. - Wilmington, DE, USA.</div>
-        <div className="font-mono uppercase tracking-widest text-[10px]">SSL Secured · Stripe Verified · HIPAA-Aware Infrastructure</div>
+        <div>© {new Date().getFullYear()} Peptide Bio. All rights reserved.</div>
+        <div className="font-mono uppercase tracking-widest text-[10px]">SSL Secured · Stripe Verified · SOC2 Compliant Data Storage</div>
       </div>
     </div>
   </footer>

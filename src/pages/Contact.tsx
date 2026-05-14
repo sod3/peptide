@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
@@ -31,14 +31,14 @@ const Contact = () => {
       </section>
 
       <section className="container grid gap-12 py-20 lg:grid-cols-5 md:py-28">
-        <motion.div 
+        <motion.div
           className="space-y-6 lg:col-span-2"
           initial="hidden" animate="visible" variants={staggerContainer}
         >
           {[
-            { i: Mail,  t: "Email",   v: "research@aevum.bio" },
-            { i: Phone, t: "Phone",   v: "+1 (302) 555-0188" },
-            { i: MapPin,t: "Office",  v: "1209 Orange St, Wilmington, DE 19801" },
+            { i: ShieldCheck, t: "Security", v: "Encrypted Data" },
+            { i: Phone, t: "Voice Enquiries", v: "+1 (302) 203-0104" },
+            { i: Mail, t: "Official Liaison", v: "Use Form Below" },
           ].map(({ i: Ic, t, v }) => (
             <motion.div key={t} variants={fadeIn} className="flex items-start gap-5 rounded-[2rem] border border-border/60 bg-white p-6 shadow-sm transition-all hover:shadow-elegant">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/5 text-primary border border-primary/10">
@@ -50,14 +50,14 @@ const Contact = () => {
               </div>
             </motion.div>
           ))}
-          
+
           <motion.div variants={fadeIn} className="aspect-[4/3] overflow-hidden rounded-[2rem] border border-border/60 bg-surface shadow-sm relative">
             <div className="grid-bg h-full w-full bg-gradient-to-br from-surface to-background/50 absolute inset-0 mix-blend-multiply opacity-50" />
             <div className="absolute inset-0 grid place-items-center">
               <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-4 text-center border border-white shadow-sm transition-transform hover:scale-105">
-                <MapPin className="mx-auto h-6 w-6 text-primary mb-2" />
-                <div className="text-[15px] font-medium text-foreground">Wilmington, DE</div>
-                <div className="mt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">39.7459° N, 75.5466° W</div>
+                <ShieldCheck className="mx-auto h-6 w-6 text-primary mb-2" />
+                <div className="text-[15px] font-medium text-foreground">Secure Research Office</div>
+                <div className="mt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Wilmington, DE</div>
               </div>
             </div>
           </motion.div>

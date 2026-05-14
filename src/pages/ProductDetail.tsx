@@ -27,19 +27,19 @@ const ProductDetail = () => {
       </div>
 
       <section className="container grid gap-16 py-8 lg:grid-cols-2 lg:items-start">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           className="relative aspect-square overflow-hidden rounded-[3rem] border border-border/40 bg-gradient-to-b from-surface to-background shadow-sm"
         >
           <div className="absolute inset-0 grid-bg opacity-30" />
-          <motion.img 
+          <motion.img
             initial={{ y: 20, rotate: -2 }}
             animate={{ y: 0, rotate: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            src={vial} alt={p.name} width={800} height={800} loading="eager" 
-            className="absolute inset-0 m-auto h-[80%] w-auto object-contain drop-shadow-xl" 
+            src={vial} alt={p.name} width={800} height={800} loading="eager"
+            className="absolute inset-0 m-auto h-[80%] w-auto object-contain drop-shadow-xl"
           />
           <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur-md px-4 py-2 font-mono text-[11px] uppercase tracking-widest text-primary border border-white">
             <ShieldCheck className="h-4 w-4" /> {p.purity}% HPLC Verified
@@ -88,8 +88,8 @@ const ProductDetail = () => {
           <motion.div variants={fadeIn} className="mt-8 flex items-start gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-[13px] leading-relaxed text-muted-foreground">
             <Info className="h-5 w-5 shrink-0 text-primary mt-0.5" />
             <div>
-              <strong className="text-foreground tracking-wide block mb-1">Research Disclaimer.</strong> 
-              <span className="font-light">{p.name} is sold strictly for in-vitro laboratory research. Not for human or veterinary use. Aevum Bio does not provide medical, dosage, or treatment guidance.</span>
+              <strong className="text-foreground tracking-wide block mb-1">Research Disclaimer.</strong>
+              <span className="font-light">{p.name} is sold strictly for in-vitro laboratory research. Not for human or veterinary use. Peptide Bio does not provide medical, dosage, or treatment guidance.</span>
             </div>
           </motion.div>
         </motion.div>
@@ -97,7 +97,7 @@ const ProductDetail = () => {
 
       {/* Lab report */}
       <section className="container pb-32 pt-10">
-        <motion.div 
+        <motion.div
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           className="grid gap-10 rounded-[2.5rem] border border-border/60 bg-white p-8 md:grid-cols-3 md:p-14 shadow-sm"
         >
@@ -120,7 +120,7 @@ const ProductDetail = () => {
               ["Endotoxin", "< 0.05 EU / mg"],
               ["Appearance", "White lyophilized powder"],
               ["Storage", "≤ -20°C, desiccated"],
-              ["Tested By", "Eurofins-Independent (US)"],
+              ["Tested By", "Independent ISO 17025 (US)"],
             ].map(([k, v]) => (
               <div key={k} className="flex flex-col justify-between border-b border-border/40 pb-4">
                 <dt className="text-muted-foreground font-light mb-1">{k}</dt>

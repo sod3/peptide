@@ -22,16 +22,16 @@ const About = () => {
       <section className="bg-gradient-to-b from-surface to-background border-b border-border/40 pb-16 pt-32">
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pr-8">
-            <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">About Aevum Bio</motion.div>
+            <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">About Peptide Bio</motion.div>
             <motion.h1 variants={fadeIn} className="mt-4 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">
               Built by scientists,<br />
               <span className="text-primary-glow font-light italic">trusted by labs.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="mt-8 text-xl text-muted-foreground font-light leading-relaxed">
-              Aevum Bio was founded in 2021 by a team of biochemists frustrated by the inconsistency of the research-peptide market. Our mission is simple: ship pharmaceutical-grade material with documentation a regulator could read.
+              Peptide Bio was founded in 2021 by a team of biochemists frustrated by the inconsistency of the research-peptide market. Our mission is simple: supply high-purity laboratory reagents with documentation a regulator could read.
             </motion.p>
           </motion.div>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -42,35 +42,17 @@ const About = () => {
         </div>
       </section>
 
-      <section className="container py-24 md:py-32">
-        <motion.div 
-          className="grid gap-8 md:grid-cols-3"
-          initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
-        >
-          {[
-            { n: "10,400+", l: "Researchers served" },
-            { n: "1,820", l: "Verified 5★ reviews" },
-            { n: "99.3%", l: "Average HPLC purity" },
-          ].map((s) => (
-            <motion.div key={s.l} variants={fadeIn} className="rounded-[2.5rem] border border-border/60 bg-white p-10 text-center transition-all hover:shadow-elegant hover:-translate-y-1">
-              <div className="font-display text-6xl font-semibold tracking-tight text-primary">{s.n}</div>
-              <div className="mt-4 font-mono text-xs uppercase tracking-widest text-muted-foreground">{s.l}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
       <section className="bg-surface/50 py-24 md:py-32">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="mx-auto max-w-2xl text-center"
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
           >
             <div className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">Our Standards</div>
             <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl text-foreground">Four pillars. Zero compromise.</h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4"
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
           >

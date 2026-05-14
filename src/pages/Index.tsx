@@ -14,10 +14,10 @@ import { motion } from "framer-motion";
 const trustLogos = ["ISO 9001", "cGMP", "USP <797>", "HPLC ≥99%", "ISO 17025 Lab", "Stripe Secure"];
 
 const benefits = [
-  { icon: Sparkles, title: "Recovery & Repair", desc: "BPC-157, TB-500 - researched for tissue and joint repair pathways." },
-  { icon: FlaskConical, title: "Growth & Performance", desc: "CJC-1295, Ipamorelin, Tesamorelin - pulsatile GH research." },
-  { icon: Beaker, title: "Longevity & Skin", desc: "GHK-Cu, Epitalon - dermal and senescence research models." },
-  { icon: Microscope, title: "Metabolic Research", desc: "Semaglutide, Tirzepatide - GLP-1 / GIP receptor pathways." },
+  { icon: Sparkles, title: "Tissue signaling", desc: "BPC-157, TB-500 - extensively researched pathways for angiogenesis." },
+  { icon: FlaskConical, title: "Secretagogue Models", desc: "CJC-1295, Ipamorelin, Tesamorelin - GH axis research standards." },
+  { icon: Beaker, title: "Cellular Senescence", desc: "GHK-Cu, Epitalon - dermal and genomic stability models." },
+  { icon: Microscope, title: "Metabolic Pathways", desc: "Semaglutide, Tirzepatide - GLP-1 / GIP receptor study compounds." },
 ];
 
 const steps = [
@@ -27,14 +27,14 @@ const steps = [
 ];
 
 const reviews = [
-  { name: "Dr. M. Hollings", role: "Independent Research Lab, MA", text: "COA matched our internal HPLC re-test within 0.3%. The most consistent supplier we've used in three years.", stars: 5 },
-  { name: "L. Chen, PharmD", role: "Compounding Consultant, CA", text: "Packaging is genuinely cold-chain - not theatre. Documentation is the cleanest in the space.", stars: 5 },
-  { name: "R. Alvarez", role: "Sports Science Researcher, FL", text: "Reordered four times. Purity, labeling, and lot traceability are all on point.", stars: 5 },
+  { name: "Dr. H. Steinberg", role: "Metabolic Research Institute", text: "Consistency is paramount for our longitudinal studies. Peptide's HPLC data is verified by our internal MS-retests every time.", stars: 5 },
+  { name: "S. K. Ramesh", role: "Biotech Logistics Director", text: "Truly cold-chain logistics. The lyophilized integrity was maintained in transit, which is rare in this space.", stars: 5 },
+  { name: "Analytical Team", role: "Contract Research Org.", text: "Batch-to-batch coefficient of variation is extremely low. This is the quality standard we require for GLP-compliant pilot work.", stars: 5 },
 ];
 
 const faqs = [
-  { q: "Are Aevum Bio peptides third-party lab tested?", a: "Yes. Every batch is tested by an independent ISO 17025-accredited laboratory using HPLC and mass spectrometry. The Certificate of Analysis is downloadable on each product page and lot-traceable." },
-  { q: "Where do you ship from and how fast?", a: "All orders ship from our Wilmington, Delaware facility via USPS Priority. Orders before 3pm ET ship the same business day. Free shipping on US orders over $200." },
+  { q: "Are Peptide Bio peptides third-party lab tested?", a: "Yes. Every batch is tested by an independent ISO 17025-accredited laboratory using HPLC and mass spectrometry. The Certificate of Analysis is downloadable on each product page and lot-traceable." },
+  { q: "Where do you ship from and how fast?", a: "All orders ship from our climate-controlled US repository via express carriers. Orders before 3pm ET ship the same business day. Free shipping on US orders over $200." },
   { q: "What purity standard do you guarantee?", a: "We guarantee a minimum of 99.0% HPLC purity on every research peptide we ship. Most batches measure between 99.2% and 99.6%." },
   { q: "Are these products legal?", a: "Our peptides are sold strictly for in-vitro laboratory research. They are not for human or animal consumption. Customers are responsible for compliance with all federal, state, and local laws." },
   { q: "Do you offer bulk pricing?", a: "Yes - institutional and bulk pricing is available for verified labs. Contact our research team via the Contact page." },
@@ -59,14 +59,14 @@ const Index = () => (
     <section className="relative overflow-hidden bg-hero pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="absolute inset-0 grid-bg opacity-[0.3] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
       <div className="container relative grid items-center gap-12 lg:grid-cols-12">
-        <motion.div 
+        <motion.div
           className="lg:col-span-6"
           initial="hidden" animate="visible" variants={staggerContainer}
         >
           <motion.div variants={fadeIn} className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-white/40 px-3 py-1.5 backdrop-blur-md shadow-sm">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#9E5421]">
-              Verification Complete · Lot #A-{new Date().getFullYear()}-0421
+              Verification Complete
             </span>
           </motion.div>
           <motion.h1 variants={fadeIn} className="mt-8 font-display text-5xl font-semibold leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
@@ -74,7 +74,7 @@ const Index = () => (
             <span className="text-gradient">verified for research.</span>
           </motion.h1>
           <motion.p variants={fadeIn} className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground font-light">
-            Aevum Bio supplies strictly curated, ≥99% pure peptides to qualified researchers—backed by independent certificates of analysis with every vial.
+            Peptide Bio supplies strictly curated, ≥99% pure peptides to qualified researchers-backed by independent certificates of analysis with every vial.
           </motion.p>
           <motion.div variants={fadeIn} className="mt-10 flex flex-wrap items-center gap-4">
             <Button asChild size="lg" className="group rounded-full bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-95 px-8 h-14 text-base transition-transform hover:scale-105">
@@ -84,27 +84,15 @@ const Index = () => (
               <a href="#about"><FileCheck2 className="h-5 w-5 mr-2" /> View Validation</a>
             </Button>
           </motion.div>
-          <motion.div variants={fadeIn} className="mt-12 grid max-w-md grid-cols-3 gap-6 divide-x divide-border/60">
-            {[
-              { k: "10,400+", v: "Researchers" },
-              { k: "99.3%", v: "Avg Purity" },
-              { k: "4.9 / 5", v: "Verified Reviews" },
-            ].map((s, i) => (
-              <div key={s.v} className={i !== 0 ? "pl-6" : ""}>
-                <div className="font-display text-2xl font-semibold tracking-tight text-primary-glow">{s.k}</div>
-                <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{s.v}</div>
-              </div>
-            ))}
-          </motion.div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="relative lg:col-span-6"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
         >
-           <div className="relative mx-auto aspect-[4/5] w-full max-w-lg overflow-hidden rounded-[2.5rem] border-[8px] border-white/50 bg-white shadow-elegant">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-lg overflow-hidden rounded-[2.5rem] border-[8px] border-white/50 bg-white shadow-elegant">
             <img src={heroImg} alt="Research peptide vial" className="h-full w-full object-cover transition-transform duration-[10s] hover:scale-110" />
             <div className="absolute inset-x-4 bottom-4 glass rounded-2xl p-4 transition-all hover:bg-white/90">
               <div className="flex items-center gap-4">
@@ -123,7 +111,7 @@ const Index = () => (
             <div className="flex items-center gap-2.5"><Award className="h-4 w-4 text-primary" /><span className="text-xs font-medium tracking-wide">ISO 17025 Verified</span></div>
           </div>
           <div className="absolute -right-8 bottom-40 hidden glass animate-float rounded-2xl p-3.5 lg:block shadow-sm" style={{ animationDelay: "1.2s" }}>
-            <div className="flex items-center gap-2.5"><Truck className="h-4 w-4 text-primary" /><span className="text-xs font-medium tracking-wide">Ships from Delaware</span></div>
+            <div className="flex items-center gap-2.5"><Truck className="h-4 w-4 text-primary" /><span className="text-xs font-medium tracking-wide">Express US Distribution</span></div>
           </div>
         </motion.div>
       </div>
@@ -150,7 +138,7 @@ const Index = () => (
           <Link to="/shop">View Complete Catalog <ArrowRight className="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" /></Link>
         </Button>
       </div>
-      <motion.div 
+      <motion.div
         className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
       >
@@ -165,14 +153,14 @@ const Index = () => (
     {/* HOW IT WORKS */}
     <section className="bg-surface py-24 md:py-32" id="about">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="mx-auto max-w-2xl text-center"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
         >
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Process</div>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">From synthesis to your bench in 3 steps.</h2>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="mt-16 grid gap-8 md:grid-cols-3"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
         >
@@ -196,18 +184,18 @@ const Index = () => (
     {/* BENEFITS */}
     <section className="container py-24 md:py-32">
       <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
-        <motion.div 
+        <motion.div
           className="lg:col-span-5"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
         >
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Research Categories</div>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl leading-tight">Categories trusted by labs nationwide.</h2>
-          <p className="mt-5 text-lg text-muted-foreground font-light leading-relaxed">Each Aevum Bio peptide is selected for its scientific relevance and shipped with full chain-of-custody documentation.</p>
+          <p className="mt-5 text-lg text-muted-foreground font-light leading-relaxed">Each Peptide Bio peptide is selected for its scientific relevance and shipped with full chain-of-custody documentation.</p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-primary text-primary-foreground h-14 px-8 text-base shadow-glow transition-transform hover:scale-105">
             <Link to="/shop">Browse Catalog <ArrowRight className="h-4 w-4 ml-2" /></Link>
           </Button>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="grid gap-6 sm:grid-cols-2 lg:col-span-7"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
         >
@@ -225,16 +213,16 @@ const Index = () => (
     </section>
 
     {/* TESTIMONIALS */}
-    <section className="bg-surface py-24 md:py-32">
+    {/* <section className="bg-surface py-24 md:py-32">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="mx-auto max-w-2xl text-center"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
         >
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Researchers Say</div>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">Rated 4.9 by 1,820 verified labs.</h2>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="mt-16 grid gap-8 md:grid-cols-3"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
         >
@@ -252,12 +240,12 @@ const Index = () => (
           ))}
         </motion.div>
       </div>
-    </section>
+    </section> */}
 
     {/* FAQ */}
     <section className="container py-24 md:py-32">
       <div className="grid gap-16 lg:grid-cols-12">
-        <motion.div 
+        <motion.div
           className="lg:col-span-4"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
         >
@@ -265,7 +253,7 @@ const Index = () => (
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl">Questions, answered with science.</h2>
           <p className="mt-5 text-lg text-muted-foreground font-light">Don't see what you need? Our research team replies within one business day.</p>
         </motion.div>
-        <motion.div 
+        <motion.div
           className="lg:col-span-8"
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
         >
@@ -283,7 +271,7 @@ const Index = () => (
 
     {/* FINAL CTA */}
     <section className="container pb-32">
-      <motion.div 
+      <motion.div
         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
         className="relative overflow-hidden rounded-[3rem] bg-gradient-primary p-12 text-primary-foreground shadow-glow md:p-20 flex flex-col md:flex-row items-center gap-10"
       >

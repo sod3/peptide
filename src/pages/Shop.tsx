@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 
-const categories = ["All", "Healing", "Recovery", "Growth", "Longevity", "Performance"] as const;
+const categories = ["All", "Tissue Repair", "Athletic Research", "Secretagogue Research", "Cellular Senescence", "Metabolic Research"] as const;
 const sorts = ["Featured", "Price: Low to High", "Price: High to Low", "Purity"] as const;
 
 const Shop = () => {

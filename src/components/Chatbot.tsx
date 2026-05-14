@@ -4,7 +4,7 @@ import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 type Msg = { role: "user" | "bot"; text: string };
 
 const SUGGESTIONS = [
-  "Which peptide is best for fat loss?",
+  "Which peptides are used in metabolic research?",
   "Are your products lab tested?",
   "How fast is US shipping?",
   "Do you provide a COA?",
@@ -12,23 +12,30 @@ const SUGGESTIONS = [
 
 const reply = (q: string): string => {
   const t = q.toLowerCase();
-  if (t.includes("fat") || t.includes("loss") || t.includes("weight"))
-    return "For metabolic research, customers most commonly explore **Semaglutide** and **Tesamorelin**. Both ship with a third-party HPLC Certificate of Analysis (≥99% purity).";
-  if (t.includes("test") || t.includes("lab") || t.includes("coa"))
-    return "Yes - every batch is independently tested by an ISO-accredited lab using HPLC and mass spectrometry. The COA is downloadable on every product page.";
-  if (t.includes("ship") || t.includes("delivery"))
-    return "Orders ship same-day from our Delaware facility via USPS Priority. Free shipping over $200, with full tracking included.";
-  if (t.includes("recover") || t.includes("heal"))
-    return "**BPC-157** and **TB-500** are the most-researched recovery peptides in our catalog. Many labs purchase them as a pair.";
-  if (t.includes("safe") || t.includes("legal"))
-    return "All Aevum Bio products are sold strictly for in-vitro laboratory research and are not for human consumption.";
-  return "Great question - I can help with product selection, lab testing, dosage research notes, or shipping. Try one of the suggestions below.";
+  const disclaimer = "\n\n*Reminder: All products are sold strictly for in-vitro laboratory research and are not for human consumption.*";
+
+  if (t.includes("metabolic") || t.includes("pathway") || t.includes("insulin"))
+    return "For metabolic research models, laboratories commonly explore compounds like **Semaglutide** and **Tesamorelin**. Both are provided at ≥99% purity with lot-specific HPLC verification." + disclaimer;
+
+  if (t.includes("test") || t.includes("lab") || t.includes("coa") || t.includes("purity"))
+    return "Yes. Every batch is independently tested by an ISO 17025-accredited laboratory using HPLC and mass spectrometry. Certificates of Analysis (COAs) are lot-traceable and downloadable on each product page.";
+
+  if (t.includes("ship") || t.includes("delivery") || t.includes("track"))
+    return "Orders ship same-day (before 3pm ET) from our climate-controlled US logistics hub via express priority carriers. We utilize cold-chain optimized packaging for temperature-sensitive research materials.";
+
+  if (t.includes("recover") || t.includes("tissue") || t.includes("signaling"))
+    return "Compounds like **BPC-157** and **TB-500** are extensively studied in tissue repair and cellular signaling research papers." + disclaimer;
+
+  if (t.includes("safe") || t.includes("legal") || t.includes("human") || t.includes("dose"))
+    return "Peptide Bio products are for **laboratory research only**. We cannot provide guidance on human safety, dosage, or administration, as these products are not for consumption or veterinary use.";
+
+  return "I can assist with inquiries regarding product specifications, laboratory testing protocols, logistics, or shipping. Please select a suggestion below for common research inquiries.";
 };
 
 export const Chatbot = () => {
   const [open, setOpen] = useState(false);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { role: "bot", text: "Hi, I'm **Aevum AI** - your research assistant. How can I help today?" },
+    { role: "bot", text: "Hi, I'm **Peptide AI** - your research assistant. How can I help today?" },
   ]);
   const [input, setInput] = useState("");
   const scroller = useRef<HTMLDivElement>(null);
@@ -60,7 +67,7 @@ export const Chatbot = () => {
                 <Sparkles className="h-4 w-4" />
               </div>
               <div>
-                <div className="font-display text-base font-semibold leading-tight">Aevum AI</div>
+                <div className="font-display text-base font-semibold leading-tight">Peptide AI</div>
                 <div className="flex items-center gap-1.5 text-[11px] opacity-80">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online · avg reply 4s
                 </div>

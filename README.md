@@ -1,3 +1,3 @@
-# Aevum Bio Website
+# Peptide Bio Website
 
 TODO: Document your project here
