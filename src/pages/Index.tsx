@@ -2,7 +2,6 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import heroImg from "@/assets/hero-vial.jpg";
 import {
@@ -10,6 +9,8 @@ import {
   ArrowRight, FileCheck2, Beaker, PackageCheck, Sparkles,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import api from "@/lib/api";
 
 const trustLogos = ["ISO 9001", "cGMP", "USP <797>", "HPLC ≥99%", "ISO 17025 Lab", "Stripe Secure"];
 
@@ -53,10 +54,22 @@ const staggerContainer = {
   }
 };
 
-const Index = () => (
-  <Layout>
-    {/* HERO */}
-    <section className="relative overflow-hidden bg-hero pt-24 pb-16 md:pt-32 md:pb-24">
+const Index = () => {
+  const { data: productsData } = useQuery({
+    queryKey: ['featured-products'],
+    queryFn: async () => {
+      const response = await api.get('/shop', { params: { limit: 4 } });
+      return response.data.data;
+    }
+  });
+
+  const featuredProducts = productsData || [];
+
+  return (
+    <Layout>
+      {/* ... HERO section omitted for brevity in replace call if possible, or just replace the whole functional body ... */}
+      {/* For safety I will replace from the start of the return to the grid */}
+      <section className="relative overflow-hidden bg-hero pt-24 pb-16 md:pt-32 md:pb-24">
       <div className="absolute inset-0 grid-bg opacity-[0.3] [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
       <div className="container relative grid items-center gap-12 lg:grid-cols-12">
         <motion.div
@@ -80,7 +93,7 @@ const Index = () => (
             <Button asChild size="lg" className="group rounded-full bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-95 px-8 h-14 text-base transition-transform hover:scale-105">
               <Link to="/shop">Explore Catalog <ArrowRight className="h-5 w-5 ml-2 transition-transform group-hover:translate-x-1" /></Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full bg-white/50 backdrop-blur-sm h-14 px-8 text-base transition-transform hover:scale-105 hover:bg-white/80">
+            <Button asChild size="lg" variant="outline" className="rounded-full bg-white/50 backdrop-blur-sm h-14 px-8 text-base transition-transform hover:scale-105 hover:bg-white/80 hover:text-primary">
               <a href="#about"><FileCheck2 className="h-5 w-5 mr-2" /> View Validation</a>
             </Button>
           </motion.div>
@@ -142,15 +155,14 @@ const Index = () => (
         className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
         initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
       >
-        {products.slice(0, 4).map((p) => (
-          <motion.div key={p.id} variants={fadeIn} className="h-full">
+        {featuredProducts.map((p: any) => (
+          <motion.div key={p._id || p.id} variants={fadeIn} className="h-full">
             <ProductCard p={p} />
           </motion.div>
         ))}
       </motion.div>
     </section>
 
-    {/* HOW IT WORKS */}
     <section className="bg-surface py-24 md:py-32" id="about">
       <div className="container">
         <motion.div
@@ -291,6 +303,7 @@ const Index = () => (
       </motion.div>
     </section>
   </Layout>
-);
+  );
+};
 
 export default Index;

@@ -1,10 +1,11 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Layout } from "@/components/Layout";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/data/products";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import api from "@/lib/api";
 
 const categories = ["All", "Tissue Repair", "Athletic Research", "Secretagogue Research", "Cellular Senescence", "Metabolic Research"] as const;
 const sorts = ["Featured", "Price: Low to High", "Price: High to Low", "Purity"] as const;
@@ -15,17 +16,17 @@ const Shop = () => {
   const [q, setQ] = useState("");
   const [maxPrice, setMaxPrice] = useState(200);
 
-  const list = useMemo(() => {
-    let l = products.filter((p) =>
-      (cat === "All" || p.category === cat) &&
-      p.price <= maxPrice &&
-      (q === "" || p.name.toLowerCase().includes(q.toLowerCase()) || p.tagline.toLowerCase().includes(q.toLowerCase()))
-    );
-    if (sort === "Price: Low to High") l = [...l].sort((a, b) => a.price - b.price);
-    if (sort === "Price: High to Low") l = [...l].sort((a, b) => b.price - a.price);
-    if (sort === "Purity") l = [...l].sort((a, b) => b.purity - a.purity);
-    return l;
-  }, [cat, sort, q, maxPrice]);
+  const { data: productsData, isLoading } = useQuery({
+    queryKey: ['products', cat, sort, q, maxPrice],
+    queryFn: async () => {
+      const response = await api.get('/shop', {
+        params: { category: cat, sort, q, maxPrice }
+      });
+      return response.data.data;
+    }
+  });
+
+  const list = productsData || [];
 
   return (
     <Layout>
@@ -62,7 +63,7 @@ const Shop = () => {
                       className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-[14px] font-medium transition-all ${cat === c ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground/70 hover:bg-primary/5 hover:text-primary"}`}>
                       {c}
                       <span className="font-mono text-[10px] opacity-70">
-                        {c === "All" ? products.length : products.filter((p) => p.category === c).length}
+                        {c === "All" ? list.length : list.filter((p: any) => p.category === c).length}
                       </span>
                     </button>
                   ))}
@@ -90,7 +91,12 @@ const Shop = () => {
               </select>
             </motion.div>
             
-            {list.length === 0 ? (
+            {isLoading ? (
+              <div className="flex flex-col items-center justify-center py-24">
+                <Loader2 className="h-10 w-10 animate-spin text-primary mb-4" />
+                <p className="text-muted-foreground font-light">Loading premium peptides...</p>
+              </div>
+            ) : list.length === 0 ? (
               <div className="py-20 text-center text-muted-foreground">
                 <p className="text-lg">No products found matching your criteria.</p>
                 <button onClick={() => { setQ(""); setCat("All"); setMaxPrice(200); }} className="mt-4 text-primary hover:underline">Clear filters</button>
@@ -104,8 +110,8 @@ const Shop = () => {
                   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
                 }}
               >
-                {list.map((p) => (
-                  <motion.div key={p.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
+                {list.map((p: any) => (
+                  <motion.div key={p._id || p.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}>
                     <ProductCard p={p} />
                   </motion.div>
                 ))}

@@ -1,9 +1,5 @@
 User-agent: *
-Allow: /
-Disallow: /checkout
-Disallow: /cart
-Disallow: /account
-Disallow: /order-confirmation
-Disallow: /api/
+Disallow: /admin
+Disallow: /api
 
-Sitemap: https://Peptide.bio/sitemap.xml
+Sitemap: https://peptide.bio/sitemap.xml

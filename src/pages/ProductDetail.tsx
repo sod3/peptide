@@ -1,17 +1,56 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
-import { products } from "@/data/products";
 import vial from "@/assets/peptide-vial.png";
 import { Button } from "@/components/ui/button";
-import { ShieldCheck, FileCheck2, Truck, Microscope, ArrowLeft, Plus, Minus, Info } from "lucide-react";
+import { ShieldCheck, FileCheck2, Truck, Microscope, ArrowLeft, Plus, Minus, Info, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { useCart } from "@/context/CartContext";
+import api from "@/lib/api";
+import { toast } from "sonner";
 
 const ProductDetail = () => {
   const { slug } = useParams();
-  const p = products.find((x) => x.slug === slug);
+  const navigate = useNavigate();
   const [qty, setQty] = useState(1);
-  if (!p) return <Navigate to="/shop" replace />;
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    if (!p) return;
+    addToCart(p, qty);
+    toast.success(`${p.name} added to cart`, {
+      description: `${qty} ${qty > 1 ? 'vials' : 'vial'} added to your research order.`,
+      icon: <Plus className="h-4 w-4" />,
+    });
+  };
+
+  const handleBuyNow = () => {
+    if (!p) return;
+    addToCart(p, qty);
+    navigate("/checkout");
+  };
+
+  const { data: p, isLoading, error } = useQuery({
+    queryKey: ['product', slug],
+    queryFn: async () => {
+      const response = await api.get(`/shop/${slug}`);
+      return response.data.data;
+    }
+  });
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="min-h-screen flex flex-col items-center justify-center">
+          <Loader2 className="h-12 w-12 animate-spin text-primary mb-4" />
+          <p className="text-muted-foreground animate-pulse font-light tracking-widest uppercase text-xs">Authenticating Batch Data...</p>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error || !p) return <Navigate to="/shop" replace />;
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -64,11 +103,16 @@ const ProductDetail = () => {
               <span className="w-10 text-center font-mono text-lg font-medium">{qty}</span>
               <button onClick={() => setQty(qty + 1)} className="grid h-12 w-12 place-items-center rounded-full text-muted-foreground hover:bg-surface hover:text-foreground transition-colors"><Plus className="h-5 w-5" /></button>
             </div>
-            <Button size="lg" className="h-14 rounded-full bg-gradient-primary text-primary-foreground shadow-glow flex-1 min-w-[200px] text-base font-medium transition-transform hover:scale-[1.02]">
-              Add to Cart · ${(p.price * qty).toFixed(2)}
+            <Button
+              onClick={handleAddToCart}
+              disabled={p.stock === 0}
+              className="flex-1 rounded-2xl bg-primary h-14 text-base font-semibold shadow-glow hover:scale-[1.02] transition-transform"
+            >
+              {p.stock === 0 ? 'Notify Me When In Stock' : 'Add to Cart'}
             </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 rounded-full bg-white transition-colors hover:bg-surface text-base">Buy Now</Button>
+            <Button size="lg" variant="outline" onClick={handleBuyNow} className="h-14 px-8 rounded-full bg-white transition-colors hover:bg-surface hover:text-primary text-base">Buy Now</Button>
           </motion.div>
+
 
           <motion.div variants={fadeIn} className="mt-12 grid gap-4 sm:grid-cols-3">
             {[
@@ -113,7 +157,7 @@ const ProductDetail = () => {
           </div>
           <dl className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-[15px]">
             {[
-              ["Lot Number", `A-${new Date().getFullYear()}-${(p.id.charCodeAt(1) * 37) % 9000 + 1000}`],
+              ["Lot Number", `A-${new Date().getFullYear()}-${((p._id || p.id).toString().charCodeAt(1) * 37) % 9000 + 1000}`],
               ["Test Method", "RP-HPLC + ESI-MS"],
               ["HPLC Purity", `${p.purity}%`],
               ["Mass Confirmed", "Yes (within ±0.1 Da)"],

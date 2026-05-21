@@ -12,9 +12,14 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
+import { useCart } from "@/context/CartContext";
+import { CartWidget } from "./CartWidget";
+
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+  const { cartCount } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -50,14 +55,27 @@ export const Navbar = () => {
             ))}
           </nav>
           <div className="flex items-center gap-3">
+            <button 
+                onClick={() => setCartOpen(true)}
+                className="relative p-2 text-foreground/70 hover:text-primary transition-colors hover:bg-primary/5 rounded-full"
+            >
+                <ShoppingBag className="h-5 w-5" />
+                {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-orange-600 text-[10px] font-bold text-white ring-2 ring-background">
+                        {cartCount}
+                    </span>
+                )}
+            </button>
             <Button asChild size="sm" className="hidden gap-2 rounded-full bg-gradient-primary text-primary-foreground hover:opacity-95 shadow-glow transition-all sm:inline-flex px-6">
-              <Link to="/shop"><ShoppingBag className="h-4 w-4" />Shop</Link>
+              <Link to="/shop">Get Started</Link>
             </Button>
             <Button variant="ghost" size="icon" className="rounded-full md:hidden text-foreground hover:bg-primary/10 transition-colors" onClick={() => setOpen(!open)} aria-label="Menu">
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
+
+        <CartWidget isOpen={cartOpen} onClose={() => setCartOpen(false)} />
         
         <AnimatePresence>
           {open && (
