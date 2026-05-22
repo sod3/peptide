@@ -14,7 +14,7 @@ export const Footer = () => (
             Peptideology supplies third-party tested research peptides to licensed laboratories and qualified researchers.
           </p>
           <div className="flex flex-wrap gap-2 pt-2">
-            {["cGMP-Aligned", "ISO 9001 Facility", "USA Shipped", "HPLC ≥99%"].map((b) => (
+            {["cGMP-Aligned", "ISO 9001 Facility", "Canada Shipped", "HPLC ≥99%"].map((b) => (
               <span key={b} className="font-mono text-[10px] uppercase tracking-widest rounded-sm border border-white/20 bg-white/5 px-3 py-1.5 text-white/80">{b}</span>
             ))}
           </div>
@@ -23,9 +23,6 @@ export const Footer = () => (
           <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Catalog</h4>
           <ul className="space-y-3 text-sm text-white/60">
             <li><Link to="/shop" className="transition-colors hover:text-white">All Peptides</Link></li>
-            <li><Link to="/shop" className="transition-colors hover:text-white">Bestsellers</Link></li>
-            <li><Link to="/shop" className="transition-colors hover:text-white">New Arrivals</Link></li>
-            <li><Link to="/shop" className="transition-colors hover:text-white">Bulk Pricing</Link></li>
           </ul>
         </div>
         <div>
@@ -40,10 +37,9 @@ export const Footer = () => (
         <div>
           <h4 className="mb-6 font-display text-lg font-semibold tracking-wide text-white">Legal</h4>
           <ul className="space-y-3 text-sm text-white/60">
-            <li><Link to="/legal" className="transition-colors hover:text-white">Research Terms</Link></li>
-            <li><Link to="/legal" className="transition-colors hover:text-white">Privacy Policy</Link></li>
-            <li><Link to="/contact" className="transition-colors hover:text-white">Shipping & Returns</Link></li>
-            <li><Link to="/legal" className="transition-colors hover:text-white">Research Disclaimer</Link></li>
+            <li><Link to="/terms" className="transition-colors hover:text-white">Terms & Conditions</Link></li>
+            <li><Link to="/privacy" className="transition-colors hover:text-white">Privacy Policy</Link></li>
+            <li><Link to="/shipping" className="transition-colors hover:text-white">Shipping & Returns</Link></li>
           </ul>
         </div>
       </div>
@@ -54,7 +50,7 @@ export const Footer = () => (
 
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center">
         <div>© {new Date().getFullYear()} Peptideology. All rights reserved.</div>
-        <div className="font-mono uppercase tracking-widest text-[10px]">SSL Secured · Stripe Verified · SOC2 Compliant Data Storage</div>
+        <div className="font-mono uppercase tracking-widest text-[10px]">SSL Secured · Not for human consumption</div>
       </div>
     </div>
   </footer>

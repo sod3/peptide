@@ -10,7 +10,9 @@ import Shop from "./pages/Shop.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
-import Legal from "./pages/Legal.tsx";
+import Terms from "./pages/Terms.tsx";
+import Privacy from "./pages/Privacy.tsx";
+import Shipping from "./pages/Shipping.tsx";
 import Checkout from "./pages/Checkout.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import AdminLayout from "./components/admin/AdminLayout.tsx";
@@ -20,6 +22,7 @@ import AdminAddProduct from "./pages/admin/AddProduct.tsx";
 import AdminLogin from "./pages/admin/Login.tsx";
 import ProtectedRoute from "./components/admin/ProtectedRoute.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import { AgeGate } from "./components/AgeGate.tsx";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +34,7 @@ const App = () => (
           <Toaster />
           <Sonner position="top-right" expand={false} richColors />
           <BrowserRouter>
+            <AgeGate />
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
@@ -38,9 +42,11 @@ const App = () => (
               <Route path="/product/:slug" element={<ProductDetail />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/legal" element={<Legal />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/shipping" element={<Shipping />} />
               <Route path="/checkout" element={<Checkout />} />
-              
+
               {/* Admin Authentication */}
               <Route path="/admin/login" element={<AdminLogin />} />
 

@@ -22,9 +22,9 @@ const benefits = [
 ];
 
 const steps = [
-  { n: "01", t: "Synthesize", d: "Manufactured in an ISO 9001, cGMP-aligned US partner facility." },
+  { n: "01", t: "Synthesize", d: "Manufactured in an ISO 9001, cGMP-aligned Canadian partner facility." },
   { n: "02", t: "Verify", d: "Every batch independently tested by an ISO 17025 lab - HPLC + MS." },
-  { n: "03", t: "Ship", d: "Cold-chain dispatch from our US repository. Same-day cutoff at 3pm ET." },
+  { n: "03", t: "Ship", d: "Cold-chain dispatch from our Canadian repository. Same-day cutoff at 3pm ET." },
 ];
 
 const reviews = [
@@ -35,7 +35,7 @@ const reviews = [
 
 const faqs = [
   { q: "Are Peptideology peptides third-party lab tested?", a: "Yes. Every batch is tested by an independent ISO 17025-accredited laboratory using HPLC and mass spectrometry. The Certificate of Analysis is downloadable on each product page and lot-traceable." },
-  { q: "Where do you ship from and how fast?", a: "All orders ship from our climate-controlled US repository via express carriers. Orders before 3pm ET ship the same business day. Free shipping on US orders over $200." },
+  { q: "Where do you ship from and how fast?", a: "All orders ship from our climate-controlled Canadian repository via express carriers. Orders before 3pm ET ship the same business day. Free shipping on Canadian orders over $200." },
   { q: "What purity standard do you guarantee?", a: "We guarantee a minimum of 99.0% HPLC purity on every research peptide we ship. Most batches measure between 99.2% and 99.6%." },
   { q: "Are these products legal?", a: "Our peptides are sold strictly for in-vitro laboratory research. They are not for human or animal consumption. Customers are responsible for compliance with all federal, state, and local laws." },
   { q: "Do you offer bulk pricing?", a: "Yes - institutional and bulk pricing is available for verified labs. Contact our research team via the Contact page." },
@@ -124,7 +124,7 @@ const Index = () => {
             <div className="flex items-center gap-2.5"><Award className="h-4 w-4 text-primary" /><span className="text-xs font-medium tracking-wide">ISO 17025 Verified</span></div>
           </div>
           <div className="absolute -right-8 bottom-40 hidden glass animate-float rounded-2xl p-3.5 lg:block shadow-sm" style={{ animationDelay: "1.2s" }}>
-            <div className="flex items-center gap-2.5"><Truck className="h-4 w-4 text-primary" /><span className="text-xs font-medium tracking-wide">Express US Distribution</span></div>
+            <div className="flex items-center gap-2.5"><Truck className="h-4 w-4 text-primary" /><span className="text-xs font-medium tracking-wide">Express Canadian Distribution</span></div>
           </div>
         </motion.div>
       </div>
@@ -290,7 +290,7 @@ const Index = () => {
         <div className="absolute inset-0 grid-bg opacity-10" />
         <div className="relative flex-1">
           <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">The standard your research deserves.</h2>
-          <p className="mt-5 max-w-lg text-lg opacity-90 font-light leading-relaxed">Verified purity, transparent documentation, and same-day US shipping. Elevate your lab protocols today.</p>
+          <p className="mt-5 max-w-lg text-lg opacity-90 font-light leading-relaxed">Verified purity, transparent documentation, and same-day Canadian shipping. Elevate your lab protocols today.</p>
         </div>
         <div className="relative flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <Button asChild size="lg" className="rounded-full bg-white text-primary hover:bg-white/90 h-14 px-8 text-base shadow-sm hover:scale-105 transition-transform w-full sm:w-auto">

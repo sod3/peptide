@@ -92,7 +92,7 @@ const ProductDetail = () => {
 
           <motion.div variants={fadeIn} className="mt-8 flex items-end gap-5 border-b border-border/40 pb-8">
             <div className="font-display text-5xl font-semibold tracking-tight text-foreground">${p.price}</div>
-            <div className="pb-1.5 font-mono text-xs uppercase tracking-widest text-muted-foreground">USD · <span className="text-primary">Free US Ship &gt; $200</span></div>
+            <div className="pb-1.5 font-mono text-xs uppercase tracking-widest text-muted-foreground">USD · <span className="text-primary">Free Canada Ship &gt; $200</span></div>
           </motion.div>
 
           <motion.p variants={fadeIn} className="mt-8 leading-loose text-foreground/80 font-light text-base">{p.description}</motion.p>
@@ -164,7 +164,7 @@ const ProductDetail = () => {
               ["Endotoxin", "< 0.05 EU / mg"],
               ["Appearance", "White lyophilized powder"],
               ["Storage", "≤ -20°C, desiccated"],
-              ["Tested By", "Independent ISO 17025 (US)"],
+              ["Tested By", "Independent ISO 17025 (Canada)"],
             ].map(([k, v]) => (
               <div key={k} className="flex flex-col justify-between border-b border-border/40 pb-4">
                 <dt className="text-muted-foreground font-light mb-1">{k}</dt>

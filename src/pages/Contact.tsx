@@ -2,13 +2,61 @@ import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send, ShieldCheck } from "lucide-react";
+import { Mail, Send, ShieldCheck, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+import api from "@/lib/api";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    institution: "",
+    message: ""
+  });
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const payload = {
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        subject: formData.institution ? `Inquiry from ${formData.institution}` : "General Inquiry",
+        message: formData.message
+      };
+
+      await api.post("/contact", payload);
+
+      setSent(true);
+      toast({
+        title: "Message sent",
+        description: "We'll respond within one business day."
+      });
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        institution: "",
+        message: ""
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.response?.data?.message || "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -25,7 +73,7 @@ const Contact = () => {
       <section className="bg-gradient-to-b from-surface to-background border-b border-border/40 pb-16 pt-32">
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="container">
           <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">Get in touch</motion.div>
-          <motion.h1 variants={fadeIn} className="mt-3 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">Talk to a researcher.</motion.h1>
+          <motion.h1 variants={fadeIn} className="mt-3 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">Get in Touch with Peptideology.</motion.h1>
           <motion.p variants={fadeIn} className="mt-4 max-w-xl text-lg text-muted-foreground font-light leading-relaxed">We reply within one business day via our secure research liaison.</motion.p>
         </motion.div>
       </section>
@@ -67,34 +115,76 @@ const Contact = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          onSubmit={(e) => { e.preventDefault(); setSent(true); toast({ title: "Message sent", description: "We'll respond within one business day." }); }}
+          onSubmit={handleSubmit}
           className="rounded-[2.5rem] border border-border/60 bg-white p-8 md:p-12 shadow-sm lg:col-span-3 transition-all hover:shadow-elegant"
         >
           <h2 className="font-display text-3xl font-semibold tracking-tight text-foreground">Send an inquiry</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">First name</label>
-              <Input required placeholder="Jane" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+              <Input
+                required
+                placeholder="Jane"
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20"
+              />
             </div>
             <div>
               <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Last name</label>
-              <Input required placeholder="Doe, PhD" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+              <Input
+                required
+                placeholder="Doe, PhD"
+                value={formData.lastName}
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20"
+              />
             </div>
             <div className="sm:col-span-2">
               <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Email</label>
-              <Input required type="email" placeholder="jane@lab.edu" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+              <Input
+                required
+                type="email"
+                placeholder="jane@lab.edu"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20"
+              />
             </div>
             <div className="sm:col-span-2">
               <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">Institution / Organization</label>
-              <Input placeholder="University or Lab Name" className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20" />
+              <Input
+                placeholder="University or Lab Name"
+                value={formData.institution}
+                onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+                className="h-12 rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20"
+              />
             </div>
             <div className="sm:col-span-2 mt-2">
               <label className="mb-2 block text-[11px] font-mono uppercase tracking-widest text-muted-foreground">How can we assist?</label>
-              <Textarea required rows={6} placeholder="Tell us about your research needs…" className="rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20 resize-none p-4" />
+              <Textarea
+                required
+                rows={6}
+                placeholder="Tell us about your research needs…"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                className="rounded-xl bg-surface/50 border-border/60 focus-visible:ring-primary/20 resize-none p-4"
+              />
             </div>
           </div>
-          <Button type="submit" size="lg" disabled={sent} className="mt-8 h-14 w-full sm:w-auto px-10 rounded-full bg-gradient-primary text-primary-foreground shadow-glow text-base transition-transform hover:scale-105">
-            {sent ? "Message Sent ✓" : (<><Send className="h-4 w-4 mr-2" /> Send Inquiry</>)}
+          <Button
+            type="submit"
+            size="lg"
+            disabled={loading || sent}
+            className="mt-8 h-14 w-full sm:w-auto px-10 rounded-full bg-gradient-primary text-primary-foreground shadow-glow text-base transition-transform hover:scale-105"
+          >
+            {loading ? (
+              <><Loader2 className="h-4 w-4 mr-2 animate-spin" /> Sending...</>
+            ) : sent ? (
+              "Message Sent ✓"
+            ) : (
+              <><Send className="h-4 w-4 mr-2" /> Send Inquiry</>
+            )}
           </Button>
         </motion.form>
       </section>
