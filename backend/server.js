@@ -19,8 +19,31 @@ const app = express();
 
 // Security Middleware
 app.use(helmet());
+
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://localhost:5173',
+    'https://peptideology.ca',
+    'https://www.peptideology.ca',
+    /\.vercel\.app$/ // Allow Vercel preview deployments
+].filter(Boolean);
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        const isAllowed = allowedOrigins.some(allowed => {
+            if (allowed instanceof RegExp) return allowed.test(origin);
+            return allowed === origin;
+        });
+
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
@@ -42,8 +65,8 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(morgan('dev'));
 
-// Static files for production if needed
-if (process.env.NODE_ENV === 'production') {
+// Static files for production (only for non-Vercel environments)
+if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
     app.use(express.static(path.join(__dirname, '../dist')));
 }
 
@@ -64,9 +87,16 @@ app.use('/api/contact', contactRoutes);
 // Database Connection
 const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('✅ Connected to MongoDB Enterprise Cluster'))
-    .catch((err) => console.error('❌ MongoDB Connection Error:', err));
+if (!MONGODB_URI) {
+    console.error('❌ MONGODB_URI is not defined in environment variables');
+} else {
+    mongoose.connect(MONGODB_URI)
+        .then(() => console.log('✅ Connected to MongoDB Enterprise Cluster'))
+        .catch((err) => {
+            console.error('❌ MongoDB Connection Error:', err);
+            // Don't exit process in serverless env
+        });
+}
 
 // Routes placeholder
 app.get('/health', (req, res) => {
