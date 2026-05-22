@@ -16,15 +16,15 @@ const createInitialAdmin = async () => {
         }
 
         const admin = new User({
-            name: 'System Owner',
-            email: 'owner@peptide.bio',
+            name: 'Administrator',
+            email: 'support@peptideology.ca',
             password: 'SecurePassword123!', // User should change this
             role: 'owner'
         });
 
         await admin.save();
-        console.log('✅ Initial Admin (Owner) created successfully');
-        console.log('Email: owner@peptide.bio');
+        console.log('✅ Initial Admin created successfully');
+        console.log('Email: support@peptideology.ca');
         console.log('Password: SecurePassword123!');
         
         process.exit(0);

@@ -39,7 +39,7 @@ const LoginPage = () => {
                         <TrendingUp className="text-white w-8 h-8" />
                     </div>
                     <h1 className="text-3xl font-bold tracking-tight">Enterprise CRM</h1>
-                    <p className="text-zinc-500 mt-2 text-center">Secure authentication system for the Peptide Bio dashboard.</p>
+                    <p className="text-zinc-500 mt-2 text-center">Secure authentication system for the Peptideology dashboard.</p>
                 </div>
 
                 <div className="bg-[#111114] border border-white/5 rounded-[2.5rem] p-10 backdrop-blur-xl shadow-2xl">
@@ -57,7 +57,7 @@ const LoginPage = () => {
                                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
                                 <Input 
                                     type="email" 
-                                    placeholder="admin@peptide.bio"
+                                    placeholder="support@peptideology.ca"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required

@@ -133,7 +133,7 @@ const ProductDetail = () => {
             <Info className="h-5 w-5 shrink-0 text-primary mt-0.5" />
             <div>
               <strong className="text-foreground tracking-wide block mb-1">Research Disclaimer.</strong>
-              <span className="font-light">{p.name} is sold strictly for in-vitro laboratory research. Not for human or veterinary use. Peptide Bio does not provide medical, dosage, or treatment guidance.</span>
+              <span className="font-light">{p.name} is sold strictly for in-vitro laboratory research. Not for human or veterinary use. Peptideology does not provide medical, dosage, or treatment guidance.</span>
             </div>
           </motion.div>
         </motion.div>

@@ -27,7 +27,7 @@ const reply = (q: string): string => {
     return "Compounds like **BPC-157** and **TB-500** are extensively studied in tissue repair and cellular signaling research papers." + disclaimer;
 
   if (t.includes("safe") || t.includes("legal") || t.includes("human") || t.includes("dose"))
-    return "Peptide Bio products are for **laboratory research only**. We cannot provide guidance on human safety, dosage, or administration, as these products are not for consumption or veterinary use.";
+    return "Peptideology products are for **laboratory research only**. We cannot provide guidance on human safety, dosage, or administration, as these products are not for consumption or veterinary use.";
 
   return "I can assist with inquiries regarding product specifications, laboratory testing protocols, logistics, or shipping. Please select a suggestion below for common research inquiries.";
 };

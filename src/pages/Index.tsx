@@ -24,7 +24,7 @@ const benefits = [
 const steps = [
   { n: "01", t: "Synthesize", d: "Manufactured in an ISO 9001, cGMP-aligned US partner facility." },
   { n: "02", t: "Verify", d: "Every batch independently tested by an ISO 17025 lab - HPLC + MS." },
-  { n: "03", t: "Ship", d: "Cold-chain dispatch from Delaware. Same-day cutoff at 3pm ET." },
+  { n: "03", t: "Ship", d: "Cold-chain dispatch from our US repository. Same-day cutoff at 3pm ET." },
 ];
 
 const reviews = [
@@ -34,7 +34,7 @@ const reviews = [
 ];
 
 const faqs = [
-  { q: "Are Peptide Bio peptides third-party lab tested?", a: "Yes. Every batch is tested by an independent ISO 17025-accredited laboratory using HPLC and mass spectrometry. The Certificate of Analysis is downloadable on each product page and lot-traceable." },
+  { q: "Are Peptideology peptides third-party lab tested?", a: "Yes. Every batch is tested by an independent ISO 17025-accredited laboratory using HPLC and mass spectrometry. The Certificate of Analysis is downloadable on each product page and lot-traceable." },
   { q: "Where do you ship from and how fast?", a: "All orders ship from our climate-controlled US repository via express carriers. Orders before 3pm ET ship the same business day. Free shipping on US orders over $200." },
   { q: "What purity standard do you guarantee?", a: "We guarantee a minimum of 99.0% HPLC purity on every research peptide we ship. Most batches measure between 99.2% and 99.6%." },
   { q: "Are these products legal?", a: "Our peptides are sold strictly for in-vitro laboratory research. They are not for human or animal consumption. Customers are responsible for compliance with all federal, state, and local laws." },
@@ -87,7 +87,7 @@ const Index = () => {
             <span className="text-gradient">verified for research.</span>
           </motion.h1>
           <motion.p variants={fadeIn} className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground font-light">
-            Peptide Bio supplies strictly curated, ≥99% pure peptides to qualified researchers-backed by independent certificates of analysis with every vial.
+            Peptideology supplies strictly curated, ≥99% pure peptides to qualified researchers-backed by independent certificates of analysis with every vial.
           </motion.p>
           <motion.div variants={fadeIn} className="mt-10 flex flex-wrap items-center gap-4">
             <Button asChild size="lg" className="group rounded-full bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-95 px-8 h-14 text-base transition-transform hover:scale-105">
@@ -202,7 +202,7 @@ const Index = () => {
         >
           <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary">Research Categories</div>
           <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight md:text-5xl leading-tight">Categories trusted by labs nationwide.</h2>
-          <p className="mt-5 text-lg text-muted-foreground font-light leading-relaxed">Each Peptide Bio peptide is selected for its scientific relevance and shipped with full chain-of-custody documentation.</p>
+          <p className="mt-5 text-lg text-muted-foreground font-light leading-relaxed">Each Peptideology peptide is selected for its scientific relevance and shipped with full chain-of-custody documentation.</p>
           <Button asChild size="lg" className="mt-8 rounded-full bg-primary text-primary-foreground h-14 px-8 text-base shadow-glow transition-transform hover:scale-105">
             <Link to="/shop">Browse Catalog <ArrowRight className="h-4 w-4 ml-2" /></Link>
           </Button>

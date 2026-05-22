@@ -22,13 +22,13 @@ const About = () => {
       <section className="bg-gradient-to-b from-surface to-background border-b border-border/40 pb-16 pt-32">
         <div className="container grid gap-12 lg:grid-cols-2 lg:items-center">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="pr-8">
-            <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">About Peptide Bio</motion.div>
+            <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">About Peptideology</motion.div>
             <motion.h1 variants={fadeIn} className="mt-4 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">
               Built by scientists,<br />
               <span className="text-primary-glow font-light italic">trusted by labs.</span>
             </motion.h1>
             <motion.p variants={fadeIn} className="mt-8 text-xl text-muted-foreground font-light leading-relaxed">
-              Peptide Bio was founded in 2021 by a team of biochemists frustrated by the inconsistency of the research-peptide market. Our mission is simple: supply high-purity laboratory reagents with documentation a regulator could read.
+              Peptideology was founded in 2021 by a team of biochemists frustrated by the inconsistency of the research-peptide market. Our mission is simple: supply high-purity laboratory reagents with documentation a regulator could read.
             </motion.p>
           </motion.div>
           <motion.div

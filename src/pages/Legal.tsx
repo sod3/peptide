@@ -10,17 +10,17 @@ const Legal = () => {
           <div className="mt-12 prose prose-stone max-w-4xl font-light leading-relaxed text-muted-foreground">
             <h2 className="text-foreground font-semibold">1. Research Use Only (RUO)</h2>
             <p>
-              All products sold by Peptide Bio are intended strictly for in-vitro laboratory research and development use only. They are NOT for human or animal consumption, veterinary use, food, or cosmetic applications.
+              All products sold by Peptideology are intended strictly for in-vitro laboratory research and development use only. They are NOT for human or animal consumption, veterinary use, food, or cosmetic applications.
             </p>
 
             <h2 className="text-foreground font-semibold mt-8">2. Purchasing Requirements</h2>
             <p>
-              By purchasing from Peptide Bio, you represent that you are a qualified researcher, laboratory professional, or institutional buyer who understands the risks associated with handling research chemicals.
+              By purchasing from Peptideology, you represent that you are a qualified researcher, laboratory professional, or institutional buyer who understands the risks associated with handling research chemicals.
             </p>
 
             <h2 className="text-foreground font-semibold mt-8">3. Limitation of Liability</h2>
             <p>
-              Peptide Bio shall not be held liable for any damages resulting from the misuse or mishandling of our products. Users assume all responsibility for compliance with local, state, and federal regulations regarding the possession and use of research peptides.
+              Peptideology shall not be held liable for any damages resulting from the misuse or mishandling of our products. Users assume all responsibility for compliance with local, state, and federal regulations regarding the possession and use of research peptides.
             </p>
 
             <h2 className="text-foreground font-semibold mt-8">4. Privacy Policy</h2>

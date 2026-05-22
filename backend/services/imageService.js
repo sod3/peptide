@@ -6,9 +6,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 cloudinary.config({
-    cloud_name: 'dzp8qjwqy', // Extracted from provided key/context if possible, but user gave a key: EMokw28pOajfQ9oJXv9YXfQ45Us
-    api_key: '235285876366524', // Use your Cloudinary credentials here
-    api_secret: 'EMokw28pOajfQ9oJXv9YXfQ45Us' 
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const storage = new CloudinaryStorage({

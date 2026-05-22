@@ -26,7 +26,7 @@ const Contact = () => {
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="container">
           <motion.div variants={fadeIn} className="font-mono text-[11px] uppercase tracking-widest text-primary/80 font-semibold">Get in touch</motion.div>
           <motion.h1 variants={fadeIn} className="mt-3 font-display text-5xl font-semibold tracking-tight md:text-6xl text-foreground">Talk to a researcher.</motion.h1>
-          <motion.p variants={fadeIn} className="mt-4 max-w-xl text-lg text-muted-foreground font-light leading-relaxed">We reply within one business day from our Delaware research office.</motion.p>
+          <motion.p variants={fadeIn} className="mt-4 max-w-xl text-lg text-muted-foreground font-light leading-relaxed">We reply within one business day via our secure research liaison.</motion.p>
         </motion.div>
       </section>
 
@@ -37,8 +37,8 @@ const Contact = () => {
         >
           {[
             { i: ShieldCheck, t: "Security", v: "Encrypted Data" },
-            { i: Phone, t: "Voice Enquiries", v: "+1 (302) 203-0104" },
-            { i: Mail, t: "Official Liaison", v: "Use Form Below" },
+            { i: Mail, t: "Official Liaison", v: "support@peptideology.ca" },
+            { i: Mail, t: "Support", v: "Use Form Below" },
           ].map(({ i: Ic, t, v }) => (
             <motion.div key={t} variants={fadeIn} className="flex items-start gap-5 rounded-[2rem] border border-border/60 bg-white p-6 shadow-sm transition-all hover:shadow-elegant">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/5 text-primary border border-primary/10">
@@ -56,8 +56,8 @@ const Contact = () => {
             <div className="absolute inset-0 grid place-items-center">
               <div className="bg-white/80 backdrop-blur-md rounded-2xl px-6 py-4 text-center border border-white shadow-sm transition-transform hover:scale-105">
                 <ShieldCheck className="mx-auto h-6 w-6 text-primary mb-2" />
-                <div className="text-[15px] font-medium text-foreground">Secure Research Office</div>
-                <div className="mt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Wilmington, DE</div>
+                <div className="text-[15px] font-medium text-foreground">Secure Liaison Office</div>
+                <div className="mt-1 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Verified Lab Access</div>
               </div>
             </div>
           </motion.div>

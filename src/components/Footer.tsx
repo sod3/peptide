@@ -11,7 +11,7 @@ export const Footer = () => (
             <Logo />
           </div>
           <p className="max-w-sm text-sm text-white/70 leading-relaxed font-light">
-            Peptide Bio supplies third-party tested research peptides to licensed laboratories and qualified researchers across the United States.
+            Peptideology supplies third-party tested research peptides to licensed laboratories and qualified researchers.
           </p>
           <div className="flex flex-wrap gap-2 pt-2">
             {["cGMP-Aligned", "ISO 9001 Facility", "USA Shipped", "HPLC ≥99%"].map((b) => (
@@ -49,11 +49,11 @@ export const Footer = () => (
       </div>
 
       <div className="mt-16 rounded-xl border border-white/10 bg-white/5 p-6 text-xs leading-relaxed text-white/60 font-light">
-        <strong className="text-white font-medium">For research use only.</strong> Products sold by Peptide Bio are intended exclusively for in-vitro laboratory research and are not for human or veterinary use, food, or cosmetic applications. Customers must be qualified, licensed researchers and assume full responsibility for compliance with all applicable laws.
+        <strong className="text-white font-medium">For research use only.</strong> Products sold by Peptideology are intended exclusively for in-vitro laboratory research and are not for human or veterinary use, food, or cosmetic applications. Customers must be qualified, licensed researchers and assume full responsibility for compliance with all applicable laws.
       </div>
 
       <div className="mt-8 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center">
-        <div>© {new Date().getFullYear()} Peptide Bio. All rights reserved.</div>
+        <div>© {new Date().getFullYear()} Peptideology. All rights reserved.</div>
         <div className="font-mono uppercase tracking-widest text-[10px]">SSL Secured · Stripe Verified · SOC2 Compliant Data Storage</div>
       </div>
     </div>
